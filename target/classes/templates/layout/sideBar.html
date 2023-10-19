@@ -14,20 +14,20 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background: #2c9ed3;" th:if="${session.usuario.estado != 'I'}">
                 
                 <li class="nav-item"><a href="#"><i
-                            class="la la-user"></i><span class="menu-title" data-i18n="Dashboard">Adicionar Persona</span></a>
+                            class="la la-user"></i><span class="menu-title" data-i18n="Dashboard">Gestionar Personas</span></a>
                     <ul class="menu-content" style="background: #2c9ed3;">
-                        <li ><a class="menu-item" href="/adm/PersonaR"><i></i><span>Persona</span></a>
+                        <li ><a class="menu-item" href="/PersonaR"><i></i><span>Persona</span></a>
                         </li>
                         <li th:if="${session.usuario.estado == 'S'}"><a class="menu-item" href="/UsuarioL"><i></i><span>Usuario</span></a>
                         </li>
-                        <li><a class="menu-item" href="/adm/AutoridadR"><i></i><span>Autoridad</span></a>
+                        <li><a class="menu-item" href="/UsuarioR"><i></i><span>Usuario</span></a>
                         </li>
                      
                         
                     </ul>
                 </li>
 
-
+                <!--
                 <li><a class="menu-item" href="/adm/ConvenioL"><i class="la la-file-text"></i><span>Adicionar Convenios</span></a>
                 </li>
 
@@ -36,7 +36,7 @@
 
                 <li><a class="menu-item" href="/adm/ReporteCon"><i class="la la-file-text"></i><span>Reportes</span></a>
                 </li>
-
+                -->
             </ul>
         </div>
     </div>
