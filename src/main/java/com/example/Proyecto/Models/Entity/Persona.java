@@ -32,9 +32,14 @@ public class Persona {
     private String ap_paterno_persona;
     private String ap_materno_persona;
     private String ci_persona;
+    private String nit_persona;
+    private String nua_persona;
     private String telefono_persona;
     private String email_persona;
     private String estado_persona;
+
+    private String rupe_user_persona;
+    private String rupe_con_persona;
 
     @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date fec_nacimiento;

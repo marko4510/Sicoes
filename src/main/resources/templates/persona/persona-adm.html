@@ -40,9 +40,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <div class="card-text">
-                                        <p>El registro corresponde a la información de la Persona.</p>
-                                    </div>
+                                  
                                     <th:block th:if="${persona.id_persona != null}">
                                         <form class="form" action="/PersonaModF" method="post" novalidate>
                                     </th:block>
@@ -122,6 +120,48 @@
                                                         <input th:field="${persona.telefono_persona}" type="text"
                                                             name="email" class="form-control mb-1 square" required
                                                             data-validation-required-message="Deber Ingresar los Datos">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4 class="form-section"><i class="icon ft-file-text"></i><strong>Datos Adicionales</strong></h4>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>NIT</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${persona.nit_persona}" type="text"
+                                                            name="nit" class="form-control mb-1 square">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>NUA</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${persona.nua_persona}" type="text"
+                                                            name="nua" class="form-control mb-1 square">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>RUPE USER</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${persona.rupe_user_persona}" type="text"
+                                                            name="rupeU" class="form-control mb-1 square">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>RUPE CON</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${persona.rupe_con_persona}" type="text"
+                                                            name="rupeC" class="form-control mb-1 square">
                                                     </div>
                                                 </div>
                                             </div>
