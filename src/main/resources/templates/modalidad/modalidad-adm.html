@@ -68,7 +68,7 @@
                                                     data-validation-required-message="Debe Seleccionar una opción"
                                                         id="select2-tags" th:field="${modalidad.tipoModalidad}"
                                                         name="id_tipo_modalidad">
-                                                        <option th:each="tpm : ${modalidades}"
+                                                        <option th:each="tpm : ${tipoModalidades}"
                                                             th:value="${tpm.id_tipo_modalidad}"
                                                             th:if="${tpm.estado_tipo_modalidad != 'X'}"
                                                             th:text="${tpm.nombre_tipo_modalidad}">

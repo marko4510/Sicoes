@@ -34,15 +34,19 @@ public class ModalidadController {
     public String ModalidadR(@Validated Modalidad Modalidad, Model model, HttpServletRequest request) throws Exception {
 
         if (request.getSession().getAttribute("persona") != null) {
-             List<Modalidad> Modalidades = modalidadService.findAll();
+            
+             
              List<TipoModalidad> tipoModalidades = tipoModalidadService.findAll();
             
     
+             List<Modalidad> modalidades = modalidadService.findAll();
+             System.out.println("Modalidades: ");
+             for (Modalidad modalidad : modalidades) {
+                 System.out.println(modalidad.getNombre_modalidad()); // Asumiendo que tienes un método toString en Modalidad
+             }
+     
              model.addAttribute("tipoModalidades", tipoModalidades);
-         
-           
-           
-            model.addAttribute("Modalidades", Modalidades);
+             model.addAttribute("modalidades", modalidades);
         
 
             return "modalidad/modalidad-adm";
@@ -77,7 +81,7 @@ public class ModalidadController {
 
                 List<TipoModalidad> tipoModalidades = tipoModalidadService.findAll();
                 model.addAttribute("tipoModalidades", tipoModalidades);
-                
+
                 List<Modalidad> modalidades = modalidadService.findAll();
                
                 model.addAttribute("modalidades", modalidades);
