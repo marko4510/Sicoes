@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+  
+    <div class="table-responsive" th:fragment="table">
+        <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="gra, index : ${grados}" th:if="${gra.estado_grado != 'X'}">
+                    
+                    <td th:text="${gra.nombre_grado}"></td>
+                    <td>
+                        <center>
+                            <div class="btn-group mr-1 mb-1">
+                                <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-cog"></i></button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item"  th:href="${'/editar-grado/'+gra.id_grado}">Editar</a>
+                                    <a class="dropdown-item" th:id="${gra.id_grado}" onclick="MandarURL(this.id)">Eliminar</a>
+                            
+                                </div>
+                            </div>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
