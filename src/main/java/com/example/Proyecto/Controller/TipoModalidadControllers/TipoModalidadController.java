@@ -55,12 +55,12 @@ public class TipoModalidadController {
         return "redirect:/TipoModalidadR";
     }
 
-    @RequestMapping(value = "/editar-tpmovlidad/{id_tipo_movilidad}")
-    public String editar_tpmovilidad(@PathVariable("id_tipo_movilidad") String id_tipo_movilidad, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/editar-tpmodalidad/{id_tipo_modalidad}")
+    public String editar_tpmodalidad(@PathVariable("id_tipo_modalidad") String id_tipo_modalidad, Model model, HttpServletRequest request) {
         if (request.getSession().getAttribute("persona") != null) {
             try {
 
-                Long id_tpm = Long.parseLong(id_tipo_movilidad);
+                Long id_tpm = Long.parseLong(id_tipo_modalidad);
                 TipoModalidad tipoModalidad = tipoModalidadService.findOne(id_tpm);
          
                 

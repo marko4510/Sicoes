@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head th:replace="layout/head :: head">
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar" data-open="click"
+    data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    <nav th:replace="layout/topBar :: topBar"></nav>
+    <!-- END: Header-->
+
+    <!-- BEGIN: Main Menu-->
+    <nav th:replace="layout/sideBar :: sideBar"></nav>
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+           
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form">Registro de Movilidad</h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                  
+                                    <th:block th:if="${modalidad.id_modalidad != null}">
+                                        <form  class="form" action="/ModalidadF" method="post" novalidate  enctype="multipart/form-data">
+                                    </th:block>
+                                    <th:block th:if="${modalidad.id_modalidad == null}">
+                                        <form id="form1" class="form" action="/ModalidadF" method="post" novalidate  enctype="multipart/form-data">
+                                    </th:block>
+                                    <input type="hidden" th:field="${modalidad.id_modalidad}">
+                                    <div class="form-body">
+                                       
+                                        <div class="row">
+                                          
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Nombre de Modalidad</h5>
+                                                    <input th:field="${modalidad.nombre_modalidad}" type="text"
+                                                    name="text" class="form-control mb-1 square">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-4 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Tipo de Modalidad</h5>
+                                                    <select class="select2 form-control square" required
+                                                    data-validation-required-message="Debe Seleccionar una opción"
+                                                        id="select2-tags" th:field="${modalidad.tipoModalidad}"
+                                                        name="id_tipo_modalidad">
+                                                        <option th:each="tpm : ${modalidades}"
+                                                            th:value="${tpm.id_tipo_modalidad}"
+                                                            th:if="${tpm.estado_tipo_modalidad != 'X'}"
+                                                            th:text="${tpm.nombre_tipo_modalidad}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                          
+                                          
+
+                                    
+                                          
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button style="width:100%;" type="submit"
+                                            class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                            data-animation="pulse">
+                                            <i class="la la-check-square-o"></i> Registrar
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form"> <strong> LISTA DE
+                                        REGISTRO</strong></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li class="text-success"><a onclick="location.reload()"><i
+                                                    class="ft-rotate-cw text-success"></i> Actualizar</a></li>
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body" id="fragmentContainer">
+                                    <th:block th:replace="modalidad/tableFragment :: table"></th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+      
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <footer th:replace="layout/footer :: footer"> </footer>
+    <script>
+        function MandarURL(a) {
+            console.log(a);
+            // Swal.fire({
+            //   title: 'Eliminar Registro?',              
+            //   type: 'error',     
+            //   showCancelButton: true,
+            //   cancelButtonText: "Cancelar",         
+            //   html:
+            //   "<a"+
+            //   " class='btn btn-danger btn-min-width' "+
+            //   " href='/adm/eliminar-persona/"+a+"'>Eliminar</a>",
+            // });
+            Swal.fire({
+                title: 'Eliminar Registro?',
+                type: 'error',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: '<a class="text-white" href="../../../../eliminar-modalidad/' + a + '" >Eliminar</a>',
+                confirmButtonAriaLabel: 'Thumbs up, great!',
+                cancelButtonText: 'Cancelar',
+                cancelButtonAriaLabel: 'Thumbs down',
+                confirmButtonClass: 'btn btn-primary',
+                buttonsStyling: false,
+                cancelButtonClass: 'btn btn-danger ml-1',
+            })
+        }
+    </script>
+
+    <script>
+ 
+        var errorMensaje = document.getElementById("errorMensaje");
+    
+        selectElement.addEventListener("input", function() {
+            if (this.value !== "") {
+                errorMensaje.textContent = "";
+            }
+        });
+    
+        document.getElementById("miFormulario").addEventListener("submit", function(event) {
+            if (selectElement.value === "") {
+                errorMensaje.textContent = "Debe seleccionar una opción";
+                event.preventDefault();
+            } else {
+                errorMensaje.textContent = "";
+            }
+        });
+    </script>
+    <div th:replace="layout/script :: script"></div>
+    <script>
+        $(document).ready(function () {
+            $('#form1').submit(function (event) {
+                event.preventDefault(); // Evita el envío del formulario por defecto
+
+                var form = $(this);
+                var submitBtn = form.find('button[type="submit"]'); // Encuentra el botón de envío del formulario
+                submitBtn.prop('disabled', true); // Desactiva el botón
+
+                var url = form.attr('action');
+                var formData = form.serialize(); // Serializa los datos del formulario
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        if (data != 0) {
+                            Swal.fire({
+                                title: "Información Registrada",
+                                text: "Registro Guardado Exitosamente",
+                                type: "success",
+                                confirmButtonClass: 'btn btn-success',
+                                buttonsStyling: false,
+                            });
+                        } else {
+                            if (data == 0) {
+                                Swal.fire({
+                                    title: "Información ya Registrada",
+                                    text: "Ya se Encuentra un Registro con el mismo NOMBRE",
+                                    type: "error",
+                                    confirmButtonClass: 'btn btn-warning',
+                                    buttonsStyling: false,
+                                });
+                            }
+                        }
+                        submitBtn.prop('disabled', false); // Reactiva el botón después de recibir la respuesta
+                        form[0].reset(); // Limpia los datos del formulario                        
+                        loadFragment();
+                    },
+                    error: function () {
+                        submitBtn.prop('disabled', false); // Reactiva el botón en caso de error
+                    }
+                });
+                function loadFragment() {
+                    $.ajax({
+                        url: '/tableModalidad', // The controller endpoint that returns the fragment
+                        method: 'GET',
+                        success: function (data) {
+                            $('#fragmentContainer').html(data);
+                            $('.zero-configuration').DataTable();
+                        },
+                        error: function (error) {
+                            console.log('Failed to load fragment:', error);
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+
+
+</body>
+<!-- END: Body-->
+
+</html>

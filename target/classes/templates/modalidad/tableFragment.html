@@ -19,16 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="tpm, index : ${tipoModalidades}" th:if="${tpm.estado_tipo_modalidad != 'X'}">
+                <tr th:each="mod, index : ${modalidades}" th:if="${mod.estado_modalidad != 'X'}">
                     
-                    <td th:text="${tpm.nombre_tipo_modalidad}"></td>
+                    <td th:text="${mod.nombre_modalidad}"></td>
                     <td>
                         <center>
                             <div class="btn-group mr-1 mb-1">
                                 <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-cog"></i></button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item"  th:href="${'/editar-tpmodalidad/'+tpm.id_tipo_modalidad}">Editar</a>
-                                    <a class="dropdown-item" th:id="${tpm.id_tipo_modalidad}" onclick="MandarURL(this.id)">Eliminar</a>
+                                    <a class="dropdown-item"  th:href="${'/editar-modalidad/'+mod.id_modalidad}">Editar</a>
+                                    <a class="dropdown-item" th:id="${mod.id_modalidad}" onclick="MandarURL(this.id)">Eliminar</a>
                             
                                 </div>
                             </div>
