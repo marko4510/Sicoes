@@ -41,10 +41,10 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                   
-                                    <th:block th:if="${grado.id_grado != null}">
+                                    <th:block th:if="${formulario.id_formulario != null}">
                                         <form  class="form" action="/FormularioModF" method="post" novalidate  enctype="multipart/form-data">
                                     </th:block>
-                                    <th:block th:if="${grado.id_grado == null}">
+                                    <th:block th:if="${formulario.id_formulario == null}">
                                         <form id="form1" class="form" action="/FormularioF" method="post" novalidate  enctype="multipart/form-data">
                                     </th:block>
                                     <input type="hidden" th:field="${formulario.id_formulario}">
