@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head th:replace="layout/head :: head">
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar" data-open="click"
+    data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    <nav th:replace="layout/topBar :: topBar"></nav>
+    <!-- END: Header-->
+
+    <!-- BEGIN: Main Menu-->
+    <nav th:replace="layout/sideBar :: sideBar"></nav>
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form"><strong>REGISTRO DE
+                                        PROYECTO</strong></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+
+                                    <th:block th:if="${proyecto.id_proyecto != null}">
+                                        <form class="form" action="/adm/ProyectoModF" method="post" novalidate>
+                                    </th:block>
+                                    <th:block th:if="${proyecto.id_proyecto == null}">
+                                        <form id="form1" class="form" action="/adm/ProyectoF" method="post" novalidate>
+                                    </th:block>
+                                    <input type="hidden" th:field="${proyecto.id_proyecto}">
+                                    <div class="form-body">
+                                        <h4 class="form-section"><i class="icon icon-user"></i><strong>Datos
+                                                del Proyecto</strong></h4>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Identificador</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${proyecto.identificador_proyecto}" type="text"
+                                                            name="text" class="form-control mb-1 square" required
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                            style="text-transform:uppercase;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Número Proyecto</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${proyecto.numero_proyecto}" type="text"
+                                                            name="text" class="form-control mb-1 square" required
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                            style="text-transform:uppercase;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Nombre Proyecto</h5>
+                                                    <div class="controls">
+                                                        <input th:field="${proyecto.nombre_proyecto}" type="text"
+                                                            name="text" class="form-control mb-1 square" required
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                            style="text-transform:uppercase;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <h5>Unidad</h5>
+                                                    <select class="select2 form-control square" required
+                                                    data-validation-required-message="Debe Seleccionar una opción"
+                                                        id="select2-tags" th:field="${proyecto.unidad}"
+                                                        name="id_unidad">
+                                                        <option value="">Seleccione una opción</option>
+                                                        <option th:each="uni : ${unidades}"
+                                                            th:value="${uni.id_unidad}"
+                                                            th:if="${uni.estado_unidad != 'X'}"
+                                                            th:text="${uni.nombre_unidad}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button style="width:100%;" type="submit"
+                                            class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                            data-animation="pulse">
+                                            <i class="la la-check-square-o"></i> Registrar
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form"> <strong> LISTA DE
+                                        REGISTRO</strong></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li class="text-success"><a onclick="location.reload()"><i
+                                                    class="ft-rotate-cw text-success"></i> Actualizar</a></li>
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body" id="fragmentContainer">
+                                    <th:block th:replace="proyecto/tabla-proyecto :: table"></th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <footer th:replace="layout/footer :: footer"> </footer>
+
+    <div th:replace="layout/script :: script"></div>
+
+    <div th:replace="layout/AjaxFormularios :: submit_form1"></div>
+
+
+    <script>
+        function MandarURL(a) {
+            console.log(a);
+            Swal.fire({
+                title: 'Eliminar Registro?',
+                type: 'error',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText: '<a class="text-white" href="/adm/eliminar-proyecto/' + a + '" >Eliminar</a>',
+                confirmButtonAriaLabel: 'Thumbs up, great!',
+                cancelButtonText: 'Cancelar',
+                cancelButtonAriaLabel: 'Thumbs down',
+                confirmButtonClass: 'btn btn-primary',
+                buttonsStyling: false,
+                cancelButtonClass: 'btn btn-danger ml-1',
+            })
+        }
+    </script>
+
+</body>
+<!-- END: Body-->
+
+</html>
