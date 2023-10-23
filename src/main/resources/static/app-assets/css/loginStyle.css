@@ -14,8 +14,8 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-    background: rgb(1, 46, 88);
-    background: linear-gradient(270deg, rgba(1, 46, 88, 1) 24%, rgb(255, 0, 30) 100%);
+    background: rgb(25, 48, 121);
+    background: linear-gradient(270deg, rgb(31, 141, 214) 24%, rgb(28, 108, 173) 100%);
 
     /* background: #009FFF;
     background: -webkit-linear-gradient(to right, #e92341, #0051ff); 
@@ -208,7 +208,7 @@ body {
     transform: rotate(80deg);
     left: 0;
 }
-
+/*
 .wave {
     position: fixed;
     top: 0;
@@ -217,7 +217,7 @@ body {
     position: absolute;
     top: 3%;
     left: 10%;
-    background: #f2112b;
+    background: #08a2df;
     width: 1500px;
     height: 1300px;
     margin-left: -150px;
@@ -230,16 +230,16 @@ body {
 .wave.-three {
     animation: drift 9500ms infinite linear;
     position: fixed;
-    background-color: #ff2e48;
+    background-color: #1c80c7;
 }
 
 .wave.-two {
     animation: drift 5000ms infinite linear;
 
-    background: #e72e44;
+    background: #1e519f;
     position: fixed;
 }
-
+*/
 .boxx:after {
     content: '';
     display: block;

@@ -95,7 +95,7 @@ public class FormularioController {
             Long id_for = Long.parseLong(id_formulario);
             Formulario formulario = formularioService.findOne(id_for);
             
-            formulario.setEstado_formulario(id_formulario);
+            formulario.setEstado_formulario("X");
             formularioService.save(formulario);
 
             
