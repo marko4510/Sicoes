@@ -52,43 +52,19 @@
                                         <h4 class="form-section"><i class="icon icon-user"></i><strong>Datos
                                                 Personales</strong></h4>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-12">
+                                            <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    <h5>Nombres</h5>
+                                                    <h5>Nombre Completo</h5>
                                                     <div class="controls">
                                                         <input th:field="${persona.nombre_persona}" type="text"
                                                             name="text" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                            style="text-transform:uppercase;">
+                                                            data-validation-required-message="Deber Ingresar los Datos">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-12">
-                                                <div class="form-group">
-                                                    <h5>Apellido Paterno</h5>
-                                                    <div class="controls">
-                                                        <input th:field="${persona.ap_paterno_persona}" type="text"
-                                                            name="text" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                            style="text-transform:uppercase;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-12">
-                                                <div class="form-group">
-                                                    <h5>Apellido Materno</h5>
-                                                    <div class="controls">
-                                                        <input th:field="${persona.ap_materno_persona}" type="text"
-                                                            name="text" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
-                                                            style="text-transform:uppercase;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-12">
+                                          
+                                         
+                                            <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
                                                     <h5>N° de C.I.</h5>
                                                     <div class="controls">
@@ -108,8 +84,7 @@
                                                     <h5>Correo Electronico</h5>
                                                     <div class="controls">
                                                         <input th:field="${persona.email_persona}" type="email"
-                                                            name="email" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos">
+                                                            name="email" class="form-control mb-1 square">
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,8 +93,7 @@
                                                     <h5>N° de Contacto</h5>
                                                     <div class="controls">
                                                         <input th:field="${persona.telefono_persona}" type="text"
-                                                            name="email" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos">
+                                                            name="email" class="form-control mb-1 square" >
                                                     </div>
                                                 </div>
                                             </div>

@@ -124,7 +124,7 @@ public class UnidadController {
         model.addAttribute("unidades", unidades);
 
 
-        return "grado/tableFragment :: table";
+        return "unidad/tableFragment :: table";
     }
 }
 
