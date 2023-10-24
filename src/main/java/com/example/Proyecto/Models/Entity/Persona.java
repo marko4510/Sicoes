@@ -49,5 +49,9 @@ public class Persona {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    private List<Contratacion> contratacion;
     
 }

@@ -31,6 +31,6 @@ public class TipoModalidad {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoModalidad", fetch = FetchType.EAGER)
-    private List<Modalidad> modalidad;
+    private List<Contratacion> contratacion;
 
 }

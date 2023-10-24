@@ -3,10 +3,15 @@ package com.example.Proyecto.Models.Entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +37,7 @@ public class Contratacion {
     private String boleta_seriedad_contratacion;
     private String boleta_seguridad_contratacion;
     private String boleta_cumplimiento_contratacion;
-     private String observacion_contratacion;
+    private String observacion_contratacion;
 
     private Date fecha_adjudicado_contratacion;
     private Date fecha_inicio_contratacion;
@@ -41,11 +46,41 @@ public class Contratacion {
 
     private String estado_contratacion;
 
+    
+    // Tabla Proyecto
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_proyecto")
+    private Proyecto proyecto;
 
-    //Relacion Proyecto
-    //Relacion Modalidad
-    //Relacion Tipo Modalidad
-    //Relacion Persona (como adjudicada)
-    //Relacion Grado
-    //Relacion Formulario
+    // Tabla Modalidad
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_modalidad")
+    private Modalidad modalidad;
+
+    // Tabla Tipo Modalidad
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_modalidad")
+    private TipoModalidad tipoModalidad;
+
+    // Tabla Persona
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
+
+    // Tabla Grado
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_grado")
+    private Grado grado;
+
+    // Tabla Formulario
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_formulario")
+    private Formulario formulario;
+
 }
