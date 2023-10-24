@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+  
+    <div class="table-responsive" th:fragment="table">
+        <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Cargo Servicio</th>
+                    <th>Adjudicado</th>
+                    <th>Grado de Ins.</th>
+                    <th>NIT</th>
+                    <th>Monto Mensual</th>
+                    <th>Monto Anual</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Tipo Modalidad</th>
+                    <th>Modalidad</th>
+                    <th>Proyecto</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contra, index : ${contrataciones}" th:if="${contra.estado_contratacion != 'X'}">
+                    
+                    <td th:text="${contra.codigo_contratacion}"></td>
+                    <td th:text="${contra.cargo_servicio_contratacion}"></td>
+                    <td >Nombre adjudicado</td>
+                    <td >Grado EJEMPLO</td>
+                    <td >23543678</td>
+                    <td th:text="${contra.monto_mensual_contratacion}"></td>
+                    <td th:text="${contra.monto_anual_contratacion}"></td>
+                    <td th:text="${contra.fecha_inicio_contratacion}"></td>
+                    <td th:text="${contra.fecha_fin_contratacion}"></td>
+                    <td >TIPO MODALIDAD EJEMPLO</td>
+                    <td >MODALIDAD EJEMPLO</td>
+                    <td >PROYECTO</td>
+                    <td>
+                        AAAA
+                        <!--
+                        <center>
+                            <div class="btn-group mr-1 mb-1">
+                                <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-cog"></i></button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item"  th:href="${'/editar-formulario/'+fors.id_formulario}">Editar</a>
+                                    <a class="dropdown-item" th:id="${fors.id_formulario}" onclick="MandarURL(this.id)">Eliminar</a>
+                            
+                                </div>
+                            </div>
+                        </center>
+                        -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
