@@ -23,8 +23,8 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
-           
-            
+
+
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </section>
-      
+
         </div>
     </div>
     <!-- END: Content-->
@@ -90,16 +90,16 @@
     </script>
 
     <script>
- 
+
         var errorMensaje = document.getElementById("errorMensaje");
-    
-        selectElement.addEventListener("input", function() {
+
+        selectElement.addEventListener("input", function () {
             if (this.value !== "") {
                 errorMensaje.textContent = "";
             }
         });
-    
-        document.getElementById("miFormulario").addEventListener("submit", function(event) {
+
+        document.getElementById("miFormulario").addEventListener("submit", function (event) {
             if (selectElement.value === "") {
                 errorMensaje.textContent = "Debe seleccionar una opción";
                 event.preventDefault();
@@ -171,7 +171,35 @@
         });
 
     </script>
+    <script>
+        /*TABLA CON FILTRO POR COLUMNA*/
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                retrieve: true,
+                paging: false,
+                orderCellsTop: true,
+                fixedHeader: true
+            });
 
+            //Creamos una fila en el head de la tabla y lo clonamos para cada columna
+            $('#example thead tr').clone(true).appendTo('#example thead');
+
+            $('#example thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text(); //es el nombre de la columna
+                $(this).html('<input type="text" placeholder="Search...' + title + '" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        });
+
+    </script>
 
 
 </body>

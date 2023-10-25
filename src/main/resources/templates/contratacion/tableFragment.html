@@ -8,9 +8,9 @@
 </head>
 
 <body>
-  
+
     <div class="table-responsive" th:fragment="table">
-        <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
+        <table class="table table-striped table-bordered file-export" id="example" style="text-align: center;">
             <thead>
                 <tr>
                     <th>Codigo</th>
@@ -26,24 +26,24 @@
                     <th>Modalidad</th>
                     <th>Proyecto</th>
                     <th>Acciones</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="contra, index : ${contrataciones}" th:if="${contra.estado_contratacion != 'X'}">
-                    
+
                     <td th:text="${contra.codigo_contratacion}"></td>
                     <td th:text="${contra.cargo_servicio_contratacion}"></td>
-                    <td >Nombre adjudicado</td>
-                    <td >Grado EJEMPLO</td>
-                    <td >23543678</td>
+                    <td>Nombre adjudicado</td>
+                    <td>Grado EJEMPLO</td>
+                    <td>23543678</td>
                     <td th:text="${contra.monto_mensual_contratacion}"></td>
                     <td th:text="${contra.monto_anual_contratacion}"></td>
                     <td th:text="${contra.fecha_inicio_contratacion}"></td>
                     <td th:text="${contra.fecha_fin_contratacion}"></td>
-                    <td >TIPO MODALIDAD EJEMPLO</td>
-                    <td >MODALIDAD EJEMPLO</td>
-                    <td >PROYECTO</td>
+                    <td>TIPO MODALIDAD EJEMPLO</td>
+                    <td>MODALIDAD EJEMPLO</td>
+                    <td>PROYECTO</td>
                     <td>
                         AAAA
                         <!--
@@ -63,6 +63,7 @@
             </tbody>
         </table>
     </div>
+    
 
 </body>
 
