@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -46,6 +49,17 @@ public class Contratacion {
 
     private String estado_contratacion;
 
+    @Transient
+    private MultipartFile file; 
+    
+    @Transient
+    private String nombreArchivo; 
+    
+    // Tabla Archivo Adjunto
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_archivo_adjunto")
+    private ArchivoAdjunto archivoAdjunto;
     
     // Tabla Proyecto
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -82,5 +96,7 @@ public class Contratacion {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_formulario")
     private Formulario formulario;
+
+    
 
 }
