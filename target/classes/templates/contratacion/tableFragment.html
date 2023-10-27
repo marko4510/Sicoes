@@ -34,16 +34,16 @@
 
                     <td th:text="${contra.codigo_contratacion}"></td>
                     <td th:text="${contra.cargo_servicio_contratacion}"></td>
-                    <td>Nombre adjudicado</td>
-                    <td>Grado EJEMPLO</td>
-                    <td>23543678</td>
+                    <td th:text="${contra.persona.nombre_persona}+' '+${contra.persona.ap_paterno_persona}+' '+${contra.persona.ap_materno_persona}"></td>
+                    <td th:text="${contra.grado.nombre_grado}"></td>
+                    <td th:text="${contra.persona.nit_persona}"></td>
                     <td th:text="${contra.monto_mensual_contratacion}"></td>
                     <td th:text="${contra.monto_anual_contratacion}"></td>
                     <td th:text="${contra.fecha_inicio_contratacion}"></td>
                     <td th:text="${contra.fecha_fin_contratacion}"></td>
-                    <td>TIPO MODALIDAD EJEMPLO</td>
-                    <td>MODALIDAD EJEMPLO</td>
-                    <td>PROYECTO</td>
+                    <td th:text="${contra.tipoModalidad.nombre_tipo_modalidad}"></td>
+                    <td th:text="${contra.modalidad.nombre_modalidad}"></td>
+                    <td th:text="${contra.proyecto.nombre_proyecto}"></td>
                     <td>
                         AAAA
                         <!--

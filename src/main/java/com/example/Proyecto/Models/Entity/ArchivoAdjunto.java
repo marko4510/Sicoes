@@ -26,10 +26,10 @@ public class ArchivoAdjunto  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String ruta;
+   
     private String nombre_archivo;
     private String estado_archivo_adjunto;
-    private String requerimiento_archivo_adjunto;
+    private String ruta_archivo_adjunto;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.EAGER)

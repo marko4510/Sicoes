@@ -1,5 +1,11 @@
 package com.example.Proyecto.Controller.ContratacionControllers;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
+import com.example.Proyecto.Models.Entity.Grado;
 import com.example.Proyecto.Models.Entity.Usuario;
+import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
 import com.example.Proyecto.Models.IService.IFormularioService;
 import com.example.Proyecto.Models.IService.IGradoService;
@@ -20,6 +31,7 @@ import com.example.Proyecto.Models.IService.IModalidadService;
 import com.example.Proyecto.Models.IService.IPersonaService;
 import com.example.Proyecto.Models.IService.IProyectoService;
 import com.example.Proyecto.Models.IService.ITipoModalidadService;
+import com.example.Proyecto.Models.Otros.AdjuntarArchivo;
 
 @Controller
 public class ContratacionController {
@@ -44,6 +56,9 @@ public class ContratacionController {
 
     @Autowired
     private IFormularioService formularioService;
+
+     @Autowired
+    private IArchivoAdjuntoService archivoAdjuntoService;
 
     @RequestMapping(value = "ContratacionR", method = RequestMethod.GET)
     public String ContratacionR(@Validated Contratacion contratacion, Model model, HttpServletRequest request) throws Exception {
@@ -83,5 +98,56 @@ public class ContratacionController {
             return "redirect:/";
         }
 
+    }
+
+    @RequestMapping(value = "ContratacionF", method = RequestMethod.POST)
+    public String ContratacionF(HttpServletRequest request, @Validated Contratacion contratacion,
+     @RequestParam(value = "formulario") Long[] id_formularios) throws FileNotFoundException, IOException { 
+        
+         MultipartFile multipartFile = contratacion.getFile();
+        ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
+         List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
+
+      if (multipartFile != null && !multipartFile.isEmpty()) {
+        try {
+            Path rootPath = Paths.get("archivos/");
+            Path rootAbsolutePath = rootPath.toAbsolutePath();
+            String rutaDirectorio = rootAbsolutePath.toString() +"/";
+
+            if (!Files.exists(rootPath)) {
+                Files.createDirectories(rootPath);
+                System.out.println("Directorio creado: " + rutaDirectorio);
+            } else {
+                System.out.println("El directorio ya existe: " + rutaDirectorio);
+            }
+
+            String nombreArchivo = (listArchivos.size() + 1) + contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion() + ".pdf";
+
+            archivoAdjunto.setNombre_archivo(nombreArchivo);
+            archivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
+            archivoAdjunto.setEstado_archivo_adjunto("A");
+            ArchivoAdjunto archivoAdjunto2 = archivoAdjuntoService.registrarArchivoAdjunto(archivoAdjunto);
+
+            contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
+            contratacion.setArchivoAdjunto(archivoAdjunto2);
+            contratacion.setNombreArchivo(nombreArchivo);
+            contratacion.setEstado_contratacion("A");
+            contratacionService.save(contratacion);
+
+            // Guardar el archivo en el directorio
+            Path filePath = Paths.get(rootPath.toString(), nombreArchivo);
+            Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        } catch (IOException e) {
+            System.err.println("Error al crear el directorio: " + e.getMessage());
+        }
+    } else {
+        // Handle the case where no file is uploaded
+    }
+        
+        
+
+
+        return "redirect:/ContratacionR";
     }
 }

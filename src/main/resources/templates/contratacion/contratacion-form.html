@@ -55,52 +55,29 @@
 
 
                                     <div class="form-body">
-                                        <h4 class="form-section"><i class="la la-archive"></i> Información de la
-                                            Contratación</h4>
+                                        <h4 class="form-section"><i class="la la-archive"></i> Información de la Contratación</h4>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control"
-                                                        for="userinput6">Resuelve</label>
-                                                    <div class="col-md-7">
+                                                    <label class="col-md-5 label-control" for="userinput6">Cargo del
+                                                        Servicio</label>
+                                                    <div class="col-md-5">
                                                         <textarea th:field="${contratacion.cargo_servicio_contratacion}"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required id="userinput8" rows="6"
                                                             class="form-control border-primary" name="bio"
-                                                            placeholder="Resumen de la Resolución"></textarea>
+                                                            ></textarea>
 
                                                     </div>
                                                 </div>
                                             </div>
-                                        
-
-
-                                        </div>
-
-
-                                        <div class="row">
-
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Número de la
-                                                        Resolución</label>
-                                                    <div class="col-md-7">
-                                                        <input th:field="${resolucion.numero_resolucion}" type="text"
-                                                            name="text" class="form-control mb-1 square"
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            required>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Folio de la
-                                                        Resolución</label>
-                                                    <div class="col-md-7">
-                                                        <input th:field="${resolucion.folio_resolucion}" type="text"
-                                                            id="campoFormato1" name="campoFormato1" class="form-control"
-                                                            placeholder=" Ejemplo: 01-03"
+                                                    <label class="col-md-4 label-control"
+                                                        for="userinput6">Partida</label>
+                                                    <div class="col-md-6">
+                                                        <input th:field="${contratacion.partida_contratacion}"
+                                                            type="text" name="text" class="form-control mb-1 square"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required>
                                                     </div>
@@ -110,29 +87,68 @@
                                         </div>
 
                                         <div class="row">
-
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Fecha de la
-                                                        Resolución</label>
-                                                    <div class="col-md-7">
+                                                    <label class="col-md-4 label-control" for="userinput6">Monto
+                                                        Mensual</label>
+                                                    <div class="col-md-6 input-group">
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Bs.</span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            aria-label="Amount (to the nearest dollar)"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control" for="userinput6">Monto
+                                                        Anual</label>
+                                                    <div class="col-md-6 input-group">
+
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Bs.</span>
+                                                        </div>
+                                                        <input type="text" class="form-control"
+                                                            aria-label="Amount (to the nearest dollar)"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control" for="userinput6">Fecha
+                                                        Inicio</label>
+                                                    <div class="col-md-6">
                                                         <input type="date" class="form-control" id="date13"
-                                                            th:field="${resolucion.fecha_resolucion}"
+                                                            th:field="${contratacion.fecha_inicio_contratacion}"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required>
                                                     </div>
                                                 </div>
                                             </div>
 
-
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Adjuntar
-                                                        Archivo</label>
-                                                    <div class="col-md-7">
-
-                                                        <input type="file" class="form-control-file" id="fileInput"
-                                                            name="pdfFile" accept=".pdf" th:field="${resolucion.file}" data-validation-required-message="Deber Ingresar los Datos" required>
+                                                    <label class="col-md-4 label-control" for="userinput6">Fecha
+                                                        Fin</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="date13"
+                                                            th:field="${contratacion.fecha_fin_contratacion}"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,28 +158,48 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control">Beneficiado</label>
-                                                    <div class="col-md-7">
+                                                    <label class="col-md-4 label-control" for="userinput6">Fecha
+                                                        Adjudicación</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" class="form-control" id="date13"
+                                                            th:field="${contratacion.fecha_adjudicado_contratacion}"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control" for="userinput6">Días
+                                                        calendario</label>
+                                                    <div class="col-md-6">
+                                                        <input th:field="${contratacion.dias_calendario_contratacion}"
+                                                            type="text" name="text" class="form-control mb-1 square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Modalidad</label>
+                                                    <div class="col-md-6">
                                                         <select class="select2 form-control square"
                                                             data-validation-required-message="Deber Ingresar los Datos"
-                                                            required id="select2-tags3"
-                                                            th:field="${resolucion.beneficiado}"
-                                                            name="id_tipo_convenio">
-                                                            <option value="">Seleccione un beneficiado</option>
-                                                            <th:block
-                                                                th:each="tpbeneficiado, index: ${tipoBeneficiados}">
-                                                                <optgroup
-                                                                    th:label="${tpbeneficiado.nombre_tipo_beneficiado}"
-                                                                    th:if="${tpbeneficiado.estado_tipo_beneficiado != 'X'}">
-                                                                    <th:block th:each="benefi : ${beneficiados}"
-                                                                        th:if="${benefi.tipoBeneficiado.id_tipo_beneficiado == tpbeneficiado.id_tipo_beneficiado}">
-                                                                        <option th:value="${benefi.id_beneficiado}"
-                                                                            th:if="${benefi.estado_beneficiado != 'X'}"
-                                                                            th:text="${benefi.nombre_beneficiado}">
-                                                                        </option>
-                                                                    </th:block>
-                                                                </optgroup>
-                                                            </th:block>
+                                                            required id="select2-tags4"
+                                                            th:field="${contratacion.modalidad}" name="id_modalidad">
+                                                            <option value="">Seleccionar un Modalidad</option>
+                                                            <option th:each="moda : ${modalidades}"
+                                                                th:value="${moda.id_modalidad}"
+                                                                th:if="${moda.estado_modalidad != 'X'}"
+                                                                th:text="${moda.nombre_modalidad}">
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -171,52 +207,285 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control"
-                                                        for="userinput6">Resuelve</label>
-                                                    <div class="col-md-7">
-                                                        <textarea th:field="${resolucion.objeto_resolucion}"
+                                                    <label class="col-md-4 label-control">Tipo</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
                                                             data-validation-required-message="Deber Ingresar los Datos"
-                                                            required id="userinput8" rows="6"
-                                                            class="form-control border-primary" name="bio"
-                                                            placeholder="Resumen de la Resolución"></textarea>
+                                                            required id="select2-tags44"
+                                                            th:field="${contratacion.tipoModalidad}"
+                                                            name="id_tipo_modalidad">
+                                                            <option value="">Seleccionar Tipo Contrato</option>
+                                                            <option th:each="moda : ${tmodalidades}"
+                                                                th:value="${moda.id_tipo_modalidad}"
+                                                                th:if="${moda.estado_tipo_modalidad != 'X'}"
+                                                                th:text="${moda.nombre_tipo_modalidad}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Adjudicado</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags43"
+                                                            th:field="${contratacion.persona}" name="id_persona">
+                                                            <option value="">Seleccionar un Adjudicado</option>
+                                                            <option th:each="per : ${personas}"
+                                                                th:value="${per.id_persona}"
+                                                                th:if="${per.estado_persona != 'X'}"
+                                                                th:text="${per.nombre_persona}+' '+${per.ap_paterno_persona}+' '+${per.ap_materno_persona}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Proyecto</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags42"
+                                                            th:field="${contratacion.proyecto}" name="id_proyecto">
+                                                            <option value="">Seleccionar un Proyecto</option>
+                                                            <option th:each="pro : ${proyectos}"
+                                                                th:value="${pro.id_proyecto}"
+                                                                th:if="${pro.estado_proyecto != 'X'}"
+                                                                th:text="${pro.nombre_proyecto}">
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <h4 class="form-section"><i class="la la-envelope"></i> Información Adicional
-                                            del Respaldo de la Resolución
-                                        </h4>
+
+
                                         <div class="row">
 
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Folio del
-                                                        Respaldo</label>
-                                                    <div class="col-md-7">
-                                                        <input th:field="${resolucion.folio_respaldo_resolucion}"
-                                                            type="text" id="campoFormato2" name="campoFormato2"
-                                                            class="form-control mb-1 square" data-validation-required-message="Deber Ingresar los Datos" required
-                                                            placeholder=" Ejemplo: 04-15">
+                                                    <label class="col-md-4 label-control">Grado de Instrucción</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags41"
+                                                            th:field="${contratacion.grado}" name="id_grado">
+                                                            <option value="">Seleccionar un Grado de Ins.</option>
+                                                            <option th:each="gra : ${grados}" th:value="${gra.id_grado}"
+                                                                th:if="${gra.estado_grado != 'X'}"
+                                                                th:text="${gra.nombre_grado}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Formularios</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2-tags form-control" multiple="multiple"
+                                                            id="select2-tags39" th:field="${contratacion.formulario}">
+                                                            <option th:each="for : ${formularios}"
+                                                            th:value="${for.id_formulario}" th:if="${for.estado_formulario != 'X'}"
+                                                            th:text="${for.nombre_formulario}">
+                                                        </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control" for="userinput6">Nro de
+                                                        Fojas</label>
+                                                    <div class="col-md-6">
+                                                        <input th:field="${contratacion.nro_fojas_contratacion}"
+                                                            type="text" name="text" class="form-control mb-1 square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
-                                                    <label class="col-md-5 label-control" for="userinput6">Adjuntar
-                                                        Respaldo</label>
-                                                    <div class="col-md-7">
+                                                    <label class="col-md-4 label-control">Gestión</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags23"
+                                                            th:field="${contratacion.gestion_contratacion}"
+                                                            name="id_gestion">
+                                                            <option value="">Seleccionar una Gestión</option>
+                                                            <option value="2000">2000</option>
+                                                            <option value="2001">2001</option>
+                                                            <option value="2002">2002</option>
+                                                            <option value="2003">2003</option>
+                                                            <option value="2004">2004</option>
+                                                            <option value="2005">2005</option>
+                                                            <option value="2006">2006</option>
+                                                            <option value="2007">2007</option>
+                                                            <option value="2008">2008</option>
+                                                            <option value="2009">2009</option>
+                                                            <option value="2010">2010</option>
+                                                            <option value="2011">2011</option>
+                                                            <option value="2012">2012</option>
+                                                            <option value="2013">2013</option>
+                                                            <option value="2014">2014</option>
+                                                            <option value="2015">2015</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
 
-                                                        <input type="file" class="form-control-file" id="fileInput"
-                                                            name="pdfFile" accept=".pdf" th:field="${resolucion.file2}" data-validation-required-message="Deber Ingresar los Datos" required>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Modificatorio</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags22"
+                                                            th:field="${contratacion.modificatorio_contratacion}"
+                                                            name="id_modificatorio">
+                                                            <option value="no" selected>NO</option>
+                                                            <option value="si">SI</option>
+                                                   
 
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control">Nro Modificación</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags21"
+                                                            th:field="${contratacion.modificatorio_contratacion}"
+                                                            name="id_modificatorio">
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                        <br>
+                                        <div class="row">
+
+                                            <div class="col-md-10">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-3 label-control" for="userinput6">Adjuntar
+                                                        Documento</label>
+                                                    <div class="col-md-7">
+                                                        
+                                                        <input type="file" class="form-control-file" id="fileInput"
+                                                            name="pdfFile" accept=".pdf" th:field="${contratacion.file}" data-validation-required-message="Deber Ingresar los Datos" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+
+
+                                        <h4 class="form-section"><i class="la la-envelope"></i> Información de Boletas
+                                        </h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-5 label-control" for="userinput6">BOLETA DE GARANTIA DE SERIEDAD DE PROPUESTA</label>
+                                                    <div class="col-md-5">
+                                                        <textarea th:field="${contratacion.boleta_seriedad_contratacion}"
+                                                            id="userinput8" rows="6"
+                                                            class="form-control border-primary" name="bio"
+                                                            ></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-5 label-control" for="userinput6">BOLETA DE GARANTIA DE CUMPLIMIENTO DE CONTRATO</label>
+                                                    <div class="col-md-5">
+                                                        <textarea th:field="${contratacion.boleta_cumplimiento_contratacion}"
+                                                            id="userinput88" rows="6"
+                                                            class="form-control border-primary" name="bio"
+                                                            ></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-5 label-control" for="userinput6">BOLETA DE GARANTIA DE SEGURIDAD DE PROPUESTA</label>
+                                                    <div class="col-md-5">
+                                                        <textarea th:field="${contratacion.boleta_seguridad_contratacion}"
+                                                             id="userinput86" rows="6"
+                                                            class="form-control border-primary" name="bio"
+                                                            ></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-5 label-control" for="userinput6">OBSERVACIONES</label>
+                                                    <div class="col-md-5">
+                                                        <textarea th:field="${contratacion.observacion_contratacion}"
+                                                            id="userinput84" rows="6"
+                                                            class="form-control border-primary" name="bio"
+                                                            ></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                      
+                                      
                                     </div>
                                     <div class="form-actions">
                                         <button style="width:100%;" type="submit" id="Dsubmit"
@@ -248,48 +517,21 @@
     <script>
         $(document).ready(function () {
             $("#form1").submit(function (event) {
-                var formato1 = $("#campoFormato1").val();
-                var formato2 = $("#campoFormato2").val();
-                var formatoRegex = /^\d{2,4}-\d{2,4}$/; // Expresión regular para el formato "01-05"
-                if (!formatoRegex.test(formato1) || !formatoRegex.test(formato2)) {
-                    Swal.fire({
-                        icon: 'warning', // Cambiamos el tipo de alerta a "warning"
-                        title: 'Advertencia',
-                        text: 'El formato del campo del Folio Resolución y Folio del Respaldo debe ser como este ejemplo: "01-05"',
-                    });
-                    event.preventDefault(); // Evitar que el formulario se envíe si la validación falla
-                } else {
+           
+             
                     // Si la validación es exitosa, bloquea el botón de submit
                     $("#Dsubmit").prop("disabled", true);
                     $("#Dsubmit").html(
                         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' +
                         '<span class="sr-only">Cargando...</span>'
                     );
-                }
+                
             });
         });
     </script>
 
 
-    <script>
-        var selectElement = document.getElementById("select2-tags6");
-        var errorMensaje = document.getElementById("errorMensaje");
 
-        selectElement.addEventListener("input", function () {
-            if (this.value !== "") {
-                errorMensaje.textContent = "";
-            }
-        });
-
-        document.getElementById("miFormulario").addEventListener("submit", function (event) {
-            if (selectElement.value === "") {
-                errorMensaje.textContent = "Debe seleccionar una opción";
-                event.preventDefault();
-            } else {
-                errorMensaje.textContent = "";
-            }
-        });
-    </script>
 
     <script>
         $('input[type="file"]').on('change', function () {
@@ -319,35 +561,7 @@
         });
     </script>
 
-    <script>
-        /*TABLA CON FILTRO POR COLUMNA*/
-        $(document).ready(function () {
-            var table = $('#example').DataTable({
-                retrieve: true,
-                paging: false,
-                orderCellsTop: true,
-                fixedHeader: true
-            });
-
-            //Creamos una fila en el head de la tabla y lo clonamos para cada columna
-            $('#example thead tr').clone(true).appendTo('#example thead');
-
-            $('#example thead tr:eq(1) th').each(function (i) {
-                var title = $(this).text(); //es el nombre de la columna
-                $(this).html('<input type="text" placeholder="Search...' + title + '" />');
-
-                $('input', this).on('keyup change', function () {
-                    if (table.column(i).search() !== this.value) {
-                        table
-                            .column(i)
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            });
-        });
-
-    </script>
+    
 
 
 
