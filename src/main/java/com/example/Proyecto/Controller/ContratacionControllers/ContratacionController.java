@@ -2,6 +2,7 @@ package com.example.Proyecto.Controller.ContratacionControllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,14 +20,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
+import com.example.Proyecto.Models.Entity.Formulario;
+import com.example.Proyecto.Models.Entity.Usuario;
 import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
 import com.example.Proyecto.Models.IService.IFormularioService;
@@ -36,6 +41,7 @@ import com.example.Proyecto.Models.IService.IPersonaService;
 import com.example.Proyecto.Models.IService.IProyectoService;
 import com.example.Proyecto.Models.IService.ITipoModalidadService;
 import com.example.Proyecto.Models.Otros.AdjuntarArchivo;
+import com.example.Proyecto.Models.Otros.AlfaNum;
 import com.example.Proyecto.Models.Otros.Encryptar;
 
 @Controller
@@ -107,7 +113,7 @@ public class ContratacionController {
 
     @RequestMapping(value = "ContratacionF", method = RequestMethod.POST)
     public String ContratacionF(HttpServletRequest request, @Validated Contratacion contratacion,
-     @RequestParam(value = "formulario") Long[] id_formularios) throws FileNotFoundException, IOException { 
+    @RequestParam(value = "formulario", required = false) Long[] id_formularios) throws FileNotFoundException, IOException { 
         
          MultipartFile multipartFile = contratacion.getFile();
         ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
@@ -179,10 +185,42 @@ public class ContratacionController {
                 }
      
 
-          
-       
-          
         
+
+    }
+
+      @PostMapping(value = "/ContratacionModF")
+    public String ContratacionModF(@Validated Contratacion contratacion, RedirectAttributes redirectAttrs, Model model,
+            HttpServletRequest request)
+            throws IOException {
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+  
+        MultipartFile multipartFile = contratacion.getFile();
+        ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
+        AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
+        AlfaNum alfaNum = new AlfaNum();
+        String nombre_r = alfaNum.generarAlfanumerico();
+       
+
+     
+
+        Path rootPath = Paths.get("archivos/");
+        Path rootAbsolutePath = rootPath.toAbsolutePath();
+        String rutaDirectorio = rootAbsolutePath.toString() +"/";
+        contratacion.setNombreArchivo(nombre_r+".pdf");
+        Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
+        if (ad == 1) {
+            ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService.buscarArchivoAdjuntoPorContratacion(contratacion.getId_contratacion());
+
+            barchivoAdjunto.setNombre_archivo(contratacion.getNombreArchivo());
+            barchivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
+            archivoAdjuntoService.modificarArchivoAdjunto(barchivoAdjunto);
+        }
+        contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
+        contratacion.setEstado_contratacion("A");
+        contratacionService.save(contratacion);
+       
+        return "redirect:/ContratacionR";
 
     }
 
@@ -197,6 +235,25 @@ public class ContratacionController {
         return new FileSystemResource(file);
     }
 
+    @RequestMapping(value = "/eliminar-contrato/{id_contrato}")
+    public String eliminar_contrato(HttpServletRequest request, @PathVariable("id_contrato") String id_contrato)
+            throws Exception {
+        if (request.getSession().getAttribute("persona") != null) {
+        try {
+            Long id_contra = Long.parseLong(id_contrato);
+            Contratacion contratacion = contratacionService.findOne(id_contra);
+            
+            contratacion.setEstado_contratacion("X");
+             contratacionService.save(contratacion);
 
+            
+            return "redirect:/ContratacionR";
+        } catch (Exception e) {
+            return "redirect:/adm/InicioAdm";
+        }
+        } else {
+            return "redirect:/";
+        }
+    }
 
 }
