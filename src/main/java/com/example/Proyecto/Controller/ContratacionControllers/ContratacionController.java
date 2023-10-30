@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +27,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
-import com.example.Proyecto.Models.Entity.Grado;
-import com.example.Proyecto.Models.Entity.Usuario;
 import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
 import com.example.Proyecto.Models.IService.IFormularioService;
@@ -37,6 +36,7 @@ import com.example.Proyecto.Models.IService.IPersonaService;
 import com.example.Proyecto.Models.IService.IProyectoService;
 import com.example.Proyecto.Models.IService.ITipoModalidadService;
 import com.example.Proyecto.Models.Otros.AdjuntarArchivo;
+import com.example.Proyecto.Models.Otros.Encryptar;
 
 @Controller
 public class ContratacionController {
@@ -112,6 +112,7 @@ public class ContratacionController {
          MultipartFile multipartFile = contratacion.getFile();
         ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
          List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
+         AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
 
       if (multipartFile != null && !multipartFile.isEmpty()) {
         try {
@@ -138,10 +139,8 @@ public class ContratacionController {
             contratacion.setNombreArchivo(nombreArchivo);
             contratacion.setEstado_contratacion("A");
             contratacionService.save(contratacion);
+            Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
 
-            // Guardar el archivo en el directorio
-            Path filePath = Paths.get(rootPath.toString(), nombreArchivo);
-            Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
         } catch (IOException e) {
             System.err.println("Error al crear el directorio: " + e.getMessage());
@@ -157,6 +156,36 @@ public class ContratacionController {
     }
 
 
+     @RequestMapping(value = "/editar-contratacion/{id_contratacion}")
+    public String editar_contratacion(@PathVariable("id_contratacion") String id_contratacion, Model model, HttpServletRequest request)
+            throws NumberFormatException, Exception {
+                  if (request.getSession().getAttribute("usuario") != null) {
+
+                    Long id_contra = Long.parseLong(id_contratacion);
+
+          
+            model.addAttribute("contratacion", contratacionService.findOne(id_contra));
+            model.addAttribute("proyectos", proyectoService.findAll());
+            model.addAttribute("modalidades", modalidadService.findAll());
+            model.addAttribute("tmodalidades", tipoModalidadService.findAll());
+            model.addAttribute("personas", personaService.findAll());
+            model.addAttribute("grados", gradoService.findAll());
+            model.addAttribute("formularios", formularioService.findAll());
+            model.addAttribute("edit", "true");
+
+            return "contratacion/contratacion-form";
+                }else{
+             return "redirect:/adm/InicioAdm";
+                }
+     
+
+          
+       
+          
+        
+
+    }
+
     @RequestMapping(value = "/openFileContrato/{id}", method = RequestMethod.GET, produces = "application/pdf")
     public @ResponseBody FileSystemResource abrirArchivoMedianteResourse(HttpServletResponse response,
             @PathVariable("id") long id_contratacion) throws FileNotFoundException {
@@ -167,4 +196,7 @@ public class ContratacionController {
         response.setHeader("Content-Length", String.valueOf(file.length()));
         return new FileSystemResource(file);
     }
+
+
+
 }
