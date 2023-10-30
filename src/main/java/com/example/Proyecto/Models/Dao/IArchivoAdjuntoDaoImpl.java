@@ -86,4 +86,20 @@ public class IArchivoAdjuntoDaoImpl implements IArchivoAdjuntoDao{
         Query q = em.createQuery(sql);
         return q.getResultList();
     }
+
+    @Override
+    public ArchivoAdjunto buscarArchivoAdjuntoPorContratacion(Long id_contratacion) {
+         String sql = "SELECT gaa  "
+        + " FROM Contratacion tr LEFT JOIN  tr.archivoAdjunto gaa"
+        + " WHERE tr.id_contratacion =:id_contratacion "
+        + " AND gaa.estado_archivo_adjunto = 'A' ";
+        /*String sql = "select gaa from pasarela_tramite tr, pasarela_archivo_adjunto ar WHERE tr.id_archivo_adjunto=ar.id_archivo_adjunto and tr.estado='A' and tr.id_tramite=:id_tramite;";*/
+        Query q = em.createQuery(sql);
+        q.setParameter("id_contratacion", id_contratacion);
+        try {
+        return (ArchivoAdjunto) q.getSingleResult();
+        } catch (Exception e) {
+        return null;
+        }
+    }
      }

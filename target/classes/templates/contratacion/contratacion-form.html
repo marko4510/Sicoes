@@ -96,7 +96,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">Bs.</span>
                                                         </div>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" th:field="${contratacion.monto_mensual_contratacion}"
                                                             aria-label="Amount (to the nearest dollar)"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required>
@@ -115,7 +115,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">Bs.</span>
                                                         </div>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" th:field="${contratacion.monto_anual_contratacion}"
                                                             aria-label="Amount (to the nearest dollar)"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required>
@@ -393,7 +393,7 @@
                                                         <select class="select2 form-control square"
                                                             data-validation-required-message="Deber Ingresar los Datos"
                                                             required id="select2-tags21"
-                                                            th:field="${contratacion.modificatorio_contratacion}"
+                                                            th:field="${contratacion.nro_modificacion_contratacion}"
                                                             name="id_modificatorio">
                                                             <option value="0">0</option>
                                                             <option value="1">1</option>

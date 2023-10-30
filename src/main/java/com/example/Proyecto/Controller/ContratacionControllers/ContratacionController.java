@@ -1,5 +1,6 @@
 package com.example.Proyecto.Controller.ContratacionControllers;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,14 +10,18 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
@@ -149,5 +154,17 @@ public class ContratacionController {
 
 
         return "redirect:/ContratacionR";
+    }
+
+
+    @RequestMapping(value = "/openFileContrato/{id}", method = RequestMethod.GET, produces = "application/pdf")
+    public @ResponseBody FileSystemResource abrirArchivoMedianteResourse(HttpServletResponse response,
+            @PathVariable("id") long id_contratacion) throws FileNotFoundException {
+        ArchivoAdjunto ArchivoAdjuntos = archivoAdjuntoService.buscarArchivoAdjuntoPorContratacion(id_contratacion);
+        File file = new File(ArchivoAdjuntos.getRuta_archivo_adjunto() + ArchivoAdjuntos.getNombre_archivo());
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "inline; filename=" + file.getName());
+        response.setHeader("Content-Length", String.valueOf(file.length()));
+        return new FileSystemResource(file);
     }
 }
