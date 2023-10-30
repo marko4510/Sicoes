@@ -45,19 +45,14 @@
                     <td th:text="${contra.modalidad.nombre_modalidad}"></td>
                     <td th:text="${contra.proyecto.nombre_proyecto}"></td>
                     <td>
-                        AAAA
-                        <!--
+                     
                         <center>
-                            <div class="btn-group mr-1 mb-1">
-                                <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-cog"></i></button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item"  th:href="${'/editar-formulario/'+fors.id_formulario}">Editar</a>
-                                    <a class="dropdown-item" th:id="${fors.id_formulario}" onclick="MandarURL(this.id)">Eliminar</a>
-                            
-                                </div>
-                            </div>
+                            <a th:onclick="renombrar([[${contra.id_contratacion}]])"><i
+                                class="fa-solid fa-eye"
+                                style="font-size: 30px; color: #000000;"
+                                title="Ver Archivo"></i></a>
                         </center>
-                        -->
+                      
                     </td>
                 </tr>
             </tbody>

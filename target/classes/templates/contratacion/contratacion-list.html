@@ -35,10 +35,10 @@
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
-                                        <li class="text-success"><a onclick="location.reload()"><i
-                                                    class="ft-rotate-cw text-success"></i> Actualizar</a></li>
-                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                        <li ><a href="/ContratacionForm"
+                                            type="button" class="btn btn-success buttonAnimation"
+                                            data-animation="pulse"><i class="la la-plus"></i>
+                                            Nuevo Registro</a></li> 
                                     </ul>
                                 </div>
                             </div>
@@ -48,6 +48,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" tabindex="-1" id="ModalEvaluacion" role="dialog"
+                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+    
+                                <div>
+    
+    
+                                    <iframe width="800" height="800" id="iframe-pdf" frameborder="0"
+                                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </section>
@@ -88,7 +103,21 @@
             })
         }
     </script>
+    <script type="text/javascript">
+        function renombrar(id_archivo_adjunto) {
+            var id_a = id_archivo_adjunto;
 
+            //alert(id_archivo_adjunto);
+
+            $("#ModalEvaluacion").modal("show");
+
+            $("#id_a").val(id_a);
+
+            $("#iframe-pdf").attr("src", `../../../openFileContrato/${id_a}`)
+
+
+        }
+    </script>
     <script>
 
         var errorMensaje = document.getElementById("errorMensaje");
