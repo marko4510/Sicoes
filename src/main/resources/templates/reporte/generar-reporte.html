@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head th:replace="layout/head :: head">
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar" data-open="click"
+    data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    <nav th:replace="layout/topBar :: topBar"></nav>
+    <!-- END: Header-->
+
+    <!-- BEGIN: Main Menu-->
+    <nav th:replace="layout/sideBar :: sideBar"></nav>
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form"><strong>GENERAR
+                                        REPORTE</strong></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="card-text">
+                                        <p>El siguiente apartado corresponde a la generación de reportes.</p>
+                                    </div>
+
+                                    <div class="form-body">
+                                        <h4 class="form-section"><i class="icon icon-user"></i><strong>Datos del
+                                                Reporte</strong></h4>
+                                        <div class="row">
+
+                                            <div class="card-body">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="baseLable1-tab1"
+                                                            data-toggle="tab" aria-controls="tabLable11"
+                                                            href="#tabLable11" aria-expanded="true">
+                                                            Reporte Convenios</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="baseLable1-tab2" data-toggle="tab"
+                                                            aria-controls="tabLable12" href="#tabLable12"
+                                                            aria-expanded="false">Reporte Resoluciones</a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="tab-content px-1 pt-1">
+                                                    <div role="tabpanel" class="tab-pane active" id="tabLable11"
+                                                        aria-expanded="true" aria-labelledby="baseLable1-tab1">
+                                                        <div class="container">
+                                                            <div class="nav-vertical">
+                                                                <ul class="nav nav-tabs nav-left flex-column">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active"
+                                                                            id="baseVerticalLeft-tab1" data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft1"
+                                                                            href="#tabVerticalLeft1"
+                                                                            aria-expanded="true">Autoridad</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="baseVerticalLeft-tab2"
+                                                                            data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft2"
+                                                                            href="#tabVerticalLeft2"
+                                                                            aria-expanded="false">Fechas</a>
+                                                                    </li>
+
+                                                                </ul>
+                                                                <div class="tab-content px-1">
+                                                                    <div role="tabpanel" class="tab-pane active"
+                                                                        id="tabVerticalLeft1" aria-expanded="true"
+                                                                        aria-labelledby="baseVerticalLeft-tab1">
+                                                                        <form action="#"
+                                                                            method="post">
+                                                                            <div class="container">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <h5>Consejo</h5>
+                                                                                        <div class="controls">
+                                                                                            <select
+                                                                                                class="select2 form-control square"
+                                                                                                name="id_consejo"
+                                                                                                id="id_consj"
+                                                                                                onchange="AutoConsj()">
+                                                                                                <option value="">
+                                                                                                    Seleccione una
+                                                                                                    opción
+                                                                                                </option>
+                                                                                                <option>
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div class="col-md-6">
+                                                                                        <h5>Autoridad</h5>
+                                                                                        <div class="controls">
+                                                                                            <select
+                                                                                                class="select2 form-control square"
+                                                                                                name="id_autoridad"
+                                                                                                id="id_auto">
+                                                                                                <option value="">
+                                                                                                    Seleccione una
+                                                                                                    opción
+                                                                                                </option>
+
+
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="tabVerticalLeft2"
+                                                                        aria-labelledby="baseVerticalLeft-tab2">
+                                                                        <form
+                                                                            method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Consejo</h5>
+                                                                                    <div class="controls">
+                                                                                        <select
+                                                                                            class="select2 form-control square"
+                                                                                            name="id_consejo3"
+                                                                                            id="id_consj1"
+                                                                                            >
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <option>
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Fecha Inicio</h5>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        name="fechaInicio2" required
+                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Fecha Fin</h5>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        name="fechaFin2" required
+                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <!--RESOLUCIONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS-->
+                                                    <div class="tab-pane" id="tabLable12"
+                                                        aria-labelledby="baseLable1-tab2">
+
+                                                        <div class="container">
+                                                            <div class="nav-vertical">
+                                                                <ul class="nav nav-tabs nav-left flex-column">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active"
+                                                                            id="baseVerticalLeft-tab3" data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft3"
+                                                                            href="#tabVerticalLeft3"
+                                                                            aria-expanded="true">Autoridad</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="baseVerticalLeft-tab4"
+                                                                            data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft4"
+                                                                            href="#tabVerticalLeft4"
+                                                                            aria-expanded="false">Fechas</a>
+                                                                    </li>
+
+                                                                </ul>
+                                                                <div class="tab-content px-1">
+                                                                    <div role="tabpanel" class="tab-pane active"
+                                                                        id="tabVerticalLeft3" aria-expanded="true"
+                                                                        aria-labelledby="baseVerticalLeft-tab3">
+                                                                        <form action="#" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h5>Consejo</h5>
+                                                                                    <div class="controls">
+                                                                                        <select
+                                                                                            class="select2 form-control square"
+                                                                                            name="id_consejo1"
+                                                                                            id="id_consj2">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <option>
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                               
+                                                                                <div class="col-md-6">
+                                                                                    <h5>Autoridad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select
+                                                                                            class="select2 form-control square"
+                                                                                            name="id_autoridad1"
+                                                                                            id="id_auto2">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="tabVerticalLeft4"
+                                                                        aria-labelledby="baseVerticalLeft-tab4">
+                                                                        <form action="" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Consejo</h5>
+                                                                                    <div class="controls">
+                                                                                        <select
+                                                                                            class="select2 form-control square"
+                                                                                            name="id_consejo1"
+                                                                                            id="id_consj3">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <option>
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Fecha Inicio</h5>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        name="fechaInicio" required
+                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
+
+
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Fecha Fin</h5>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        name="fechaFin" required
+                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
+
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <footer th:replace="layout/footer :: footer"> </footer>
+    <div th:replace="layout/script :: script"></div>
+    <script>
+        function AutoConsj() {
+            var j = document.getElementById("id_consj").value;
+            //alert(i);
+            $.getJSON("/adm/Autori", {
+                autoriId: j,
+                ajax: 'true'
+            }, function (data) {
+                var html = '<option value="">--Seleccione una Autoridad--</option>';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    // Obtiene el año de la fecha y lo muestra en la opción
+                    var fechaIni = new Date(data[i].fecha_inicio);
+                    var añoIni = fechaIni.getFullYear();
+
+                    var fechaFi = new Date(data[i].fecha_final);
+                    var añoFi = fechaFi.getFullYear();
+
+                    html += '<option value="' + data[i].id_autoridad + '">'
+                        + data[i].persona.nombre_persona + ' ' + data[i].persona.ap_paterno_persona + ' ' + data[i].persona.ap_materno_persona + ' ' + añoIni + '-' + añoFi + '</option>';
+                }
+                html += '</option>';
+                $('#id_auto').html(html);
+            });
+        }
+    </script>
+
+
+    <script>
+        function AutoConsj1() {
+            var j = document.getElementById("id_consj1").value;
+            //alert(i);
+            $.getJSON("/adm/Autori", {
+                autoriId: j,
+                ajax: 'true'
+            }, function (data) {
+                var html = '<option value="">--Seleccione una Autoridad--</option>';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id_autoridad + '">'
+                        + data[i].persona.nombre_persona + ' ' + data[i].persona.ap_paterno_persona + ' ' + data[i].persona.ap_materno_persona + '</option>';
+                }
+                html += '</option>';
+                $('#id_auto1').html(html);
+            });
+        }//);
+    </script>
+
+    <script>
+        function AutoConsj2() {
+            var j = document.getElementById("id_consj2").value;
+            //alert(i);
+            $.getJSON("/adm/Autori", {
+                autoriId: j,
+                ajax: 'true'
+            }, function (data) {
+                var html = '<option value="">--Seleccione una Autoridad--</option>';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id_autoridad + '">'
+                        + data[i].persona.nombre_persona + ' ' + data[i].persona.ap_paterno_persona + ' ' + data[i].persona.ap_materno_persona + '</option>';
+                }
+                html += '</option>';
+                $('#id_auto2').html(html);
+            });
+        }//);
+    </script>
+
+    <script>
+        function AutoConsj3() {
+            var j = document.getElementById("id_consj3").value;
+            //alert(i);
+            $.getJSON("/adm/Autori", {
+                autoriId: j,
+                ajax: 'true'
+            }, function (data) {
+                var html = '<option value="">--Seleccione una Autoridad--</option>';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id_autoridad + '">'
+                        + data[i].persona.nombre_persona + ' ' + data[i].persona.ap_paterno_persona + ' ' + data[i].persona.ap_materno_persona + '</option>';
+                }
+                html += '</option>';
+                $('#id_auto3').html(html);
+            });
+        }//);
+    </script>
+
+</body>
+
+
+</html>
