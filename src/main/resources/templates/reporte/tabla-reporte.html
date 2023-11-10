@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head th:replace="layout/head :: head">
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns   fixed-navbar" data-open="click"
+    data-menu="vertical-menu-modern" data-col="2-columns">
+
+    <!-- BEGIN: Header-->
+    <nav th:replace="layout/topBar :: topBar"></nav>
+    <!-- END: Header-->
+
+    <!-- BEGIN: Main Menu-->
+    <nav th:replace="layout/sideBar :: sideBar"></nav>
+    <!-- END: Main Menu-->
+
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="content-wrapper">
+
+
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
+                            <div class="card-header card-head-inverse bg-dark">
+                                <h4 class="card-title text-white" id="basic-layout-form"> <strong> Reporte</strong></h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body" id="fragmentContainer">
+                                    <div class="table-responsive" th:fragment="table">
+                                        <table class="table table-striped table-bordered file-export" id="example" style="text-align: center;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Codigo</th>
+                                                    <th>Cargo Servicio</th>
+                                                    <th>Adjudicado</th>
+                                                    <th>Grado de Ins.</th>
+                                                    <th>NIT</th>
+                                                    <th>Monto Mensual</th>
+                                                    <th>Monto Anual</th>
+                                                    <th>Fecha Inicio</th>
+                                                    <th>Fecha Fin</th>
+                                                    <th>Tipo Modalidad</th>
+                                                    <th>Modalidad</th>
+                                                    <th>Proyecto</th>
+                                
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="contra, index : ${contrataciones}" th:if="${contra.estado_contratacion != 'X'}">
+                                
+                                                    <td th:text="${contra.codigo_contratacion}"></td>
+                                                    <td th:text="${contra.cargo_servicio_contratacion}"></td>
+                                                    <td
+                                                        th:text="${contra.persona.nombre_persona}+' '+${contra.persona.ap_paterno_persona}+' '+${contra.persona.ap_materno_persona}">
+                                                    </td>
+                                                    <td th:text="${contra.grado.nombre_grado}"></td>
+                                                    <td th:text="${contra.persona.nit_persona}"></td>
+                                                    <td th:text="${contra.monto_mensual_contratacion}"></td>
+                                                    <td th:text="${contra.monto_anual_contratacion}"></td>
+                                                    <td th:text="${contra.fecha_inicio_contratacion}"></td>
+                                                    <td th:text="${contra.fecha_fin_contratacion}"></td>
+                                                    <td th:text="${contra.tipoModalidad.nombre_tipo_modalidad}"></td>
+                                                    <td th:text="${contra.modalidad.nombre_modalidad}"></td>
+                                                    <td th:text="${contra.proyecto.nombre_proyecto}"></td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="ModalEvaluacion" role="dialog"
+                        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+    
+                                <div>
+    
+    
+                                    <iframe width="800" height="800" id="iframe-pdf" frameborder="0"
+                                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <footer th:replace="layout/footer :: footer"> </footer>
+    <div th:replace="layout/script :: script"></div>
+   
+</body>
+<!-- END: Body-->
+
+</html>

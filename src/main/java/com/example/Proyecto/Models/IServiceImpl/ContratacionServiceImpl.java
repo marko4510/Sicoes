@@ -35,5 +35,17 @@ public class ContratacionServiceImpl implements IContratacionService{
     public void delete(Long id) {
         contratacionDao.deleteById(id);
     }
+
+    @Override
+    public List<Contratacion> findByGestionContratacion(String gestionContratacion) {
+        // TODO Auto-generated method stub
+        return contratacionDao.findByGestionContratacion(gestionContratacion);
+    }
+
+    @Override
+    public List<Contratacion> findByNombreModalidad(String nombreModalidad) {
+        // TODO Auto-generated method stub
+        return contratacionDao.findByNombreModalidad(nombreModalidad);
+    }
     
 }
