@@ -157,4 +157,52 @@ public class ReporteControllers {
         }
     }
 
+    @RequestMapping(value = "reportGTU", method = RequestMethod.POST)
+    public String Mostrar_Tabla_Reporte_Gestion_TipoModalidad_Unidad(@RequestParam("gestion7") String gestion,
+            @RequestParam("nombre_tipo_modalidad2") String nombre_tipo_modalidad,
+            @RequestParam("nombre_unidad2") String nombre_unidad, HttpServletRequest request, Model model) {
+
+        if (request.getSession().getAttribute("persona") != null) {
+
+            model.addAttribute("contrataciones",
+                    contratacionService.findByGestion_TipoModalidad_Unidad(gestion, nombre_tipo_modalidad,nombre_unidad));
+
+            return "reporte/tabla-reporte";
+        } else {
+            return "redirect:/";
+        }
+    }
+    
+    @RequestMapping(value = "reportGMT", method = RequestMethod.POST)
+    public String Mostrar_Tabla_Reporte_Gestion_Modalidad_TipoModalidad(@RequestParam("gestion8") String gestion,
+            @RequestParam("nombre_modalidad3") String nombre_modalidad,
+            @RequestParam("nombre_tipo_modalidad3") String nombre_tipo_modalidad, HttpServletRequest request, Model model) {
+
+        if (request.getSession().getAttribute("persona") != null) {
+
+            model.addAttribute("contrataciones",
+                    contratacionService.findByGestion_Modalidad_TipoModalidad(gestion, nombre_modalidad, nombre_tipo_modalidad));
+
+            return "reporte/tabla-reporte";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping(value = "reportGMN", method = RequestMethod.POST)
+    public String Mostrar_Tabla_Reporte_Gestion_Modalidad_NumProyecto(@RequestParam("gestion9") String gestion,
+            @RequestParam("nombre_modalidad4") String nombre_modalidad,
+            @RequestParam("numero_proyecto2") String numero_proyecto, HttpServletRequest request, Model model) {
+
+        if (request.getSession().getAttribute("persona") != null) {
+
+            model.addAttribute("contrataciones",
+                    contratacionService.findByGestion_Modalidad_NumProyecto(gestion, nombre_modalidad, numero_proyecto));
+
+            return "reporte/tabla-reporte";
+        } else {
+            return "redirect:/";
+        }
+    }
+
 }

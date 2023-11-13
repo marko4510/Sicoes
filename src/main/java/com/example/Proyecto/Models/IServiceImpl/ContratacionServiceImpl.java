@@ -77,5 +77,26 @@ public class ContratacionServiceImpl implements IContratacionService{
         // TODO Auto-generated method stub
         return contratacionDao.findByGestion_y_Persona(gestionContratacion, id_Persona);
     }
+
+    @Override
+    public List<Contratacion> findByGestion_TipoModalidad_Unidad(String gestionContratacion, String nomTipoModalidad,
+            String nombreUnidad) {
+        // TODO Auto-generated method stub
+        return contratacionDao.findByGestion_TipoModalidad_Unidad(gestionContratacion, nomTipoModalidad, nombreUnidad);
+    }
+
+    @Override
+    public List<Contratacion> findByGestion_Modalidad_TipoModalidad(String gestionContratacion, String nombreModalidad,
+            String nomTipoModalidad) {
+        // TODO Auto-generated method stub
+        return contratacionDao.findByGestion_Modalidad_TipoModalidad(gestionContratacion, nombreModalidad, nomTipoModalidad);
+    }
+
+    @Override
+    public List<Contratacion> findByGestion_Modalidad_NumProyecto(String gestionContratacion, String nombreModalidad,
+            String numProyecto) {
+        // TODO Auto-generated method stub
+        return contratacionDao.findByGestion_Modalidad_NumProyecto(gestionContratacion, nombreModalidad, numProyecto);
+    }
     
 }

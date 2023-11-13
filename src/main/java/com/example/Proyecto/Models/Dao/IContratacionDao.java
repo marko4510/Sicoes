@@ -29,4 +29,19 @@ public interface IContratacionDao extends CrudRepository<Contratacion, Long> {
 
     @Query(value = "SELECT * FROM contratacion AS con INNER JOIN modalidad AS mo ON con.id_modalidad = mo.id_modalidad WHERE con.gestion_contratacion = ?1 AND mo.nombre_modalidad = ?2", nativeQuery = true)
     public List<Contratacion> findByGestion_y_Modalidad(String gestionContratacion, String nombreModalidad);
+
+    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN proyecto AS pr ON con.id_proyecto = pr.id_proyecto INNER JOIN unidad as uni ON pr.id_unidad = uni.id_unidad \n" + //
+            "INNER JOIN tipo_modalidad as tp_mo ON con.id_tipo_modalidad = tp_mo.id_tipo_modalidad \n" + //
+            "WHERE con.gestion_contratacion = ?1 AND tp_mo.nombre_tipo_modalidad  = ?2 AND uni.nombre_unidad = ?3", nativeQuery = true)
+    public List<Contratacion> findByGestion_TipoModalidad_Unidad(String gestionContratacion, String nomTipoModalidad, String nombreUnidad);
+
+    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN modalidad AS mo ON con.id_modalidad = mo.id_modalidad \n" + 
+            "INNER JOIN tipo_modalidad AS tp_mo ON con.id_tipo_modalidad = tp_mo.id_tipo_modalidad \n" + //
+            "WHERE con.gestion_contratacion = ?1 AND mo.nombre_modalidad  = ?2 AND tp_mo.nombre_tipo_modalidad = ?3", nativeQuery = true)
+    public List<Contratacion> findByGestion_Modalidad_TipoModalidad(String gestionContratacion, String nombreModalidad, String nomTipoModalidad);
+
+    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN proyecto AS pr ON con.id_proyecto = pr.id_proyecto \n" + //
+                    "INNER JOIN modalidad AS mo ON con.id_modalidad = mo.id_modalidad\n" + //
+                    "WHERE  con.gestion_contratacion = ?1 AND mo.nombre_modalidad = ?2 AND pr.numero_proyecto = ?3", nativeQuery = true)
+    public List<Contratacion> findByGestion_Modalidad_NumProyecto(String gestionContratacion, String nombreModalidad, String numProyecto);
 }

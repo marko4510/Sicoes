@@ -2,8 +2,6 @@ package com.example.Proyecto.Models.IService;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import com.example.Proyecto.Models.Entity.Contratacion;
 
 
@@ -30,5 +28,12 @@ public interface IContratacionService {
   public List<Contratacion> findByGestion_y_Persona(String gestionContratacion, Long id_Persona);
 
   public List<Contratacion> findByGestion_y_Modalidad(String gestionContratacion, String nombreModalidad);
+
+  public List<Contratacion> findByGestion_TipoModalidad_Unidad(String gestionContratacion, String nomTipoModalidad, String nombreUnidad);
+
+  public List<Contratacion> findByGestion_Modalidad_TipoModalidad(String gestionContratacion, String nombreModalidad, String nomTipoModalidad);
+
+  public List<Contratacion> findByGestion_Modalidad_NumProyecto(String gestionContratacion, String nombreModalidad, String numProyecto);
+
 
 }
