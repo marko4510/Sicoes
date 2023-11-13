@@ -215,13 +215,20 @@
                                                                             href="#tabVerticalLeft6"
                                                                             aria-expanded="false">Gestion / Tipo Modalidad</a>
                                                                     </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="baseVerticalLeft-tab4"
+                                                                            data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft7"
+                                                                            href="#tabVerticalLeft7"
+                                                                            aria-expanded="false">Gestion / Persona</a>
+                                                                    </li>
 
                                                                 </ul>
                                                                 <div class="tab-content px-1">
                                                                     <div role="tabpanel" class="tab-pane active"
                                                                         id="tabVerticalLeft3" aria-expanded="true"
                                                                         aria-labelledby="baseVerticalLeft-tab3">
-                                                                        <form action="#" method="post">
+                                                                        <form action="/reportGU" method="post">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <h5>Gestion</h5>
@@ -282,7 +289,7 @@
                                                                     </div>
                                                                     <div class="tab-pane" id="tabVerticalLeft4"
                                                                         aria-labelledby="baseVerticalLeft-tab4">
-                                                                        <form action="" method="post">
+                                                                        <form action="/reportGN" method="post">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <h5>Gestion</h5>
@@ -343,7 +350,7 @@
                                                                     </div>
                                                                     <div class="tab-pane" id="tabVerticalLeft5"
                                                                         aria-labelledby="baseVerticalLeft-tab5">
-                                                                        <form action="" method="post">
+                                                                        <form action="/reportGM" method="post">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <h5>Gestion</h5>
@@ -402,42 +409,14 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="tab-pane" id="tabLable13"
-                                                        aria-labelledby="baseLable1-tab3">
-
-                                                        <div class="container">
-                                                            <div class="nav-vertical">
-                                                                <ul class="nav nav-tabs nav-left flex-column">
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link active"
-                                                                            id="baseVerticalLeft-tab3" data-toggle="tab"
-                                                                            aria-controls="tabVerticalLeft3"
-                                                                            href="#tabVerticalLeft3"
-                                                                            aria-expanded="true">Gestion / Tipo Modalidad / Unidad</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" id="baseVerticalLeft-tab4"
-                                                                            data-toggle="tab"
-                                                                            aria-controls="tabVerticalLeft4"
-                                                                            href="#tabVerticalLeft4"
-                                                                            aria-expanded="false">Gestion / Modalidad / Tipo Modalidad </a>
-                                                                    </li>
-
-                                                                </ul>
-                                                                <div class="tab-content px-1">
-                                                                    <div role="tabpanel" class="tab-pane active"
-                                                                        id="tabVerticalLeft3" aria-expanded="true"
-                                                                        aria-labelledby="baseVerticalLeft-tab3">
-                                                                        <form action="#" method="post">
+                                                                    <div class="tab-pane" id="tabVerticalLeft6"
+                                                                        aria-labelledby="baseVerticalLeft-tab5">
+                                                                        <form action="/reportGT" method="post">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <h5>Gestion</h5>
                                                                                     <div class="controls">
-                                                                                        <select class="select2 form-control square" name="gestion4" id="gestion4" required>
+                                                                                        <select class="select2 form-control square" name="gestion5" id="gestion5" required>
                                                                                             <option value="">
                                                                                                 Seleccione una
                                                                                                 opción
@@ -465,9 +444,330 @@
                                                                                 </div>
                                                                                
                                                                                 <div class="col-md-6">
+                                                                                    <h5>Tipo Modalidad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="nombre_tipo_modalidad" id="nombre_tipo_modalidad">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="tm : ${tipoModalidades}" th:if="${tm.estado_tipo_modalidad != 'X'}">
+                                                                                                <option th:value="${tm.nombre_tipo_modalidad}" th:text="${tm.nombre_tipo_modalidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="tabVerticalLeft7"
+                                                                        aria-labelledby="baseVerticalLeft-tab5">
+                                                                        <form action="/reportGP" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <h5>Gestion</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="gestion6" id="gestion6" required>
+                                                                                            <option value="">
+                                                                                                Seleccione una
+                                                                                                opción
+                                                                                            </option>
+                                                                                            <option value="2007">2007</option>
+                                                                                            <option value="2008">2008</option>
+                                                                                            <option value="2009">2009</option>
+                                                                                            <option value="2010">2010</option>
+                                                                                            <option value="2011">2011</option>
+                                                                                            <option value="2012">2012</option>
+                                                                                            <option value="2013">2013</option>
+                                                                                            <option value="2014">2014</option>
+                                                                                            <option value="2015">2015</option>
+                                                                                            <option value="2016">2016</option>
+                                                                                            <option value="2017">2017</option>
+                                                                                            <option value="2018">2018</option>
+                                                                                            <option value="2019">2019</option>
+                                                                                            <option value="2020">2020</option>
+                                                                                            <option value="2021">2021</option>
+                                                                                            <option value="2022">2022</option>
+                                                                                            <option value="2023">2023</option>
+                                                                                            <option value="2024">2024</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                               
+                                                                                <div class="col-md-6">
+                                                                                    <h5>Persona</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="id_persona" id="id_persona">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="p : ${personas}" th:if="${p.estado_persona != 'X'}">
+                                                                                                <option th:value="${p.id_persona}" th:text="${p.nombre_persona+' '+p.ap_paterno_persona+' '+p.ap_materno_persona}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="tabLable13"
+                                                        aria-labelledby="baseLable1-tab3">
+
+                                                        <div class="container">
+                                                            <div class="nav-vertical">
+                                                                <ul class="nav nav-tabs nav-left flex-column">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active"
+                                                                            id="baseVerticalLeft-tab3" data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft8"
+                                                                            href="#tabVerticalLeft8"
+                                                                            aria-expanded="true">Gestion / Tipo Modalidad / Unidad</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="baseVerticalLeft-tab4"
+                                                                            data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft9"
+                                                                            href="#tabVerticalLeft9"
+                                                                            aria-expanded="false">Gestion / Modalidad / Tipo Modalidad </a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link" id="baseVerticalLeft-tab4"
+                                                                            data-toggle="tab"
+                                                                            aria-controls="tabVerticalLeft10"
+                                                                            href="#tabVerticalLeft10"
+                                                                            aria-expanded="false">Gestion / Modalidad / Num Proyecto </a>
+                                                                    </li>
+
+                                                                </ul>
+                                                                <div class="tab-content px-1">
+                                                                    <div role="tabpanel" class="tab-pane active"
+                                                                        id="tabVerticalLeft8" aria-expanded="true"
+                                                                        aria-labelledby="baseVerticalLeft-tab3">
+                                                                        <form action="#" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Gestion</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="gestion7" id="gestion7" required>
+                                                                                            <option value="">
+                                                                                                Seleccione una
+                                                                                                opción
+                                                                                            </option>
+                                                                                            <option value="2007">2007</option>
+                                                                                            <option value="2008">2008</option>
+                                                                                            <option value="2009">2009</option>
+                                                                                            <option value="2010">2010</option>
+                                                                                            <option value="2011">2011</option>
+                                                                                            <option value="2012">2012</option>
+                                                                                            <option value="2013">2013</option>
+                                                                                            <option value="2014">2014</option>
+                                                                                            <option value="2015">2015</option>
+                                                                                            <option value="2016">2016</option>
+                                                                                            <option value="2017">2017</option>
+                                                                                            <option value="2018">2018</option>
+                                                                                            <option value="2019">2019</option>
+                                                                                            <option value="2020">2020</option>
+                                                                                            <option value="2021">2021</option>
+                                                                                            <option value="2022">2022</option>
+                                                                                            <option value="2023">2023</option>
+                                                                                            <option value="2024">2024</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                               
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Tipo Modalidad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="nombre_tipo_modalidad2" id="nombre_tipo_modalidad2">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="tm : ${tipoModalidades}" th:if="${tm.estado_tipo_modalidad != 'X'}">
+                                                                                                <option th:value="${tm.nombre_tipo_modalidad}" th:text="${tm.nombre_tipo_modalidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
                                                                                     <h5>Unidad</h5>
                                                                                     <div class="controls">
-                                                                                        <select class="select2 form-control square" name="numero_proyecto" id="numero_proyecto">
+                                                                                        <select class="select2 form-control square" name="nombre_unidad2" id="nombre_unidad2">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="u : ${unidades}" th:if="${u.estado_unidad != 'X'}">
+                                                                                                <option th:value="${u.nombre_unidad}" th:text="${u.nombre_unidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="tabVerticalLeft9"
+                                                                        aria-labelledby="baseVerticalLeft-tab4">
+                                                                        <form action="" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Gestion</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="gestion8" id="gestion8" required>
+                                                                                            <option value="">
+                                                                                                Seleccione una
+                                                                                                opción
+                                                                                            </option>
+                                                                                            <option value="2007">2007</option>
+                                                                                            <option value="2008">2008</option>
+                                                                                            <option value="2009">2009</option>
+                                                                                            <option value="2010">2010</option>
+                                                                                            <option value="2011">2011</option>
+                                                                                            <option value="2012">2012</option>
+                                                                                            <option value="2013">2013</option>
+                                                                                            <option value="2014">2014</option>
+                                                                                            <option value="2015">2015</option>
+                                                                                            <option value="2016">2016</option>
+                                                                                            <option value="2017">2017</option>
+                                                                                            <option value="2018">2018</option>
+                                                                                            <option value="2019">2019</option>
+                                                                                            <option value="2020">2020</option>
+                                                                                            <option value="2021">2021</option>
+                                                                                            <option value="2022">2022</option>
+                                                                                            <option value="2023">2023</option>
+                                                                                            <option value="2024">2024</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Modalidad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="nombre_modalidad3" id="nombre_modalidad3">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="m : ${modalidales}" th:if="${m.estado_modalidad != 'X'}">
+                                                                                                <option th:value="${m.nombre_modalidad}" th:text="${m.nombre_modalidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Tipo Modalidad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="nombre_tipo_modalidad3" id="nombre_tipo_modalidad3">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="tm : ${tipoModalidades}" th:if="${tm.estado_tipo_modalidad != 'X'}">
+                                                                                                <option th:value="${tm.nombre_tipo_modalidad}" th:text="${tm.nombre_tipo_modalidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="form-actions">
+                                                                                <button style="width:100%;"
+                                                                                    type="submit"
+                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                                                                    data-animation="pulse">
+                                                                                    <i class="la la-check-square-o"></i>
+                                                                                    Generar
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="tab-pane" id="tabVerticalLeft10"
+                                                                        aria-labelledby="baseVerticalLeft-tab4">
+                                                                        <form action="" method="post">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Gestion</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="gestion9" id="gestion9" required>
+                                                                                            <option value="">
+                                                                                                Seleccione una
+                                                                                                opción
+                                                                                            </option>
+                                                                                            <option value="2007">2007</option>
+                                                                                            <option value="2008">2008</option>
+                                                                                            <option value="2009">2009</option>
+                                                                                            <option value="2010">2010</option>
+                                                                                            <option value="2011">2011</option>
+                                                                                            <option value="2012">2012</option>
+                                                                                            <option value="2013">2013</option>
+                                                                                            <option value="2014">2014</option>
+                                                                                            <option value="2015">2015</option>
+                                                                                            <option value="2016">2016</option>
+                                                                                            <option value="2017">2017</option>
+                                                                                            <option value="2018">2018</option>
+                                                                                            <option value="2019">2019</option>
+                                                                                            <option value="2020">2020</option>
+                                                                                            <option value="2021">2021</option>
+                                                                                            <option value="2022">2022</option>
+                                                                                            <option value="2023">2023</option>
+                                                                                            <option value="2024">2024</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Modalidad</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="nombre_modalidad4" id="nombre_modalidad4">
+                                                                                            <option value="">Seleccione
+                                                                                                una opción
+                                                                                            </option>
+                                                                                            <th:block th:each="m : ${modalidales}" th:if="${m.estado_modalidad != 'X'}">
+                                                                                                <option th:value="${m.nombre_modalidad}" th:text="${m.nombre_modalidad}">
+                                                                                                </option>
+                                                                                            </th:block>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-4">
+                                                                                    <h5>Numero Proyecto</h5>
+                                                                                    <div class="controls">
+                                                                                        <select class="select2 form-control square" name="numero_proyecto2" id="numero_proyecto2">
                                                                                             <option value="">Seleccione
                                                                                                 una opción
                                                                                             </option>
@@ -491,64 +791,10 @@
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                    <div class="tab-pane" id="tabVerticalLeft4"
-                                                                        aria-labelledby="baseVerticalLeft-tab4">
-                                                                        <form action="" method="post">
-                                                                            <div class="row">
-                                                                                <div class="col-md-4">
-                                                                                    <h5>Consejo</h5>
-                                                                                    <div class="controls">
-                                                                                        <select
-                                                                                            class="select2 form-control square"
-                                                                                            name="id_consejo1"
-                                                                                            id="id_consj3">
-                                                                                            <option value="">Seleccione
-                                                                                                una opción
-                                                                                            </option>
-                                                                                            <option>
-                                                                                            </option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-
-
-
-                                                                                <div class="col-md-4">
-                                                                                    <h5>Fecha Inicio</h5>
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        name="fechaInicio" required
-                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
-
-
-                                                                                </div>
-
-                                                                                <div class="col-md-4">
-                                                                                    <h5>Fecha Fin</h5>
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        name="fechaFin" required
-                                                                                        data-validation-required-message="Debe Ingresar una Fecha">
-
-
-                                                                                </div>
-
-                                                                            </div>
-                                                                            <div class="form-actions">
-                                                                                <button style="width:100%;"
-                                                                                    type="submit"
-                                                                                    class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
-                                                                                    data-animation="pulse">
-                                                                                    <i class="la la-check-square-o"></i>
-                                                                                    Generar
-                                                                                </button>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

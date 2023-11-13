@@ -27,6 +27,8 @@ public interface IContratacionService {
 
   public List<Contratacion> findByGestion_y_TipoModalidad(String gestionContratacion, String nomTipoModalidad);
 
-  public List<Contratacion> findByGestion_y_Persona(String gestionContratacion, String nomPersona);
+  public List<Contratacion> findByGestion_y_Persona(String gestionContratacion, Long id_Persona);
+
+  public List<Contratacion> findByGestion_y_Modalidad(String gestionContratacion, String nombreModalidad);
 
 }

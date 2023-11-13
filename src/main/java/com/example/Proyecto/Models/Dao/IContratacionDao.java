@@ -24,6 +24,9 @@ public interface IContratacionDao extends CrudRepository<Contratacion, Long> {
     @Query(value = "SELECT * FROM contratacion AS con INNER JOIN tipo_modalidad AS tp_mo ON con.id_tipo_modalidad = tp_mo.id_tipo_modalidad WHERE con.gestion_contratacion = ?1 AND tp_mo.nombre_tipo_modalidad = ?2", nativeQuery = true)
     public List<Contratacion> findByGestion_y_TipoModalidad(String gestionContratacion, String nomTipoModalidad);
 
-    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN persona AS per ON con.id_persona = per.id_persona WHERE con.gestion_contratacion = ?1 AND per.nombre_persona = ?2", nativeQuery = true)
-    public List<Contratacion> findByGestion_y_Persona(String gestionContratacion, String nomPersona);
+    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN persona AS per ON con.id_persona = per.id_persona WHERE con.gestion_contratacion = ?1 AND per.id_persona = ?2", nativeQuery = true)
+    public List<Contratacion> findByGestion_y_Persona(String gestionContratacion, Long id_Persona);
+
+    @Query(value = "SELECT * FROM contratacion AS con INNER JOIN modalidad AS mo ON con.id_modalidad = mo.id_modalidad WHERE con.gestion_contratacion = ?1 AND mo.nombre_modalidad = ?2", nativeQuery = true)
+    public List<Contratacion> findByGestion_y_Modalidad(String gestionContratacion, String nombreModalidad);
 }
