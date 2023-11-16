@@ -12,6 +12,7 @@
         <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Identificador</th>
                     <th>Nro Proyecto</th>
                     <th>Proyecto</th>
@@ -21,6 +22,7 @@
             </thead>
             <tbody>
                 <tr th:each="pro, index : ${proyectos}" th:if="${pro.estado_proyecto != 'X'}">
+                    <td th:text="${index.index+1}"></td>
                     <td th:text="${pro.identificador_proyecto}"></td>
                     <td th:text="${pro.numero_proyecto}"></td>
                     <td th:text="${pro.nombre_proyecto}"></td>

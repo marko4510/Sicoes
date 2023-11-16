@@ -13,6 +13,7 @@
         <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Nombre</th>
                     <th>Acciones</th>
                     
@@ -20,7 +21,7 @@
             </thead>
             <tbody>
                 <tr th:each="fors, index : ${formularios}" th:if="${fors.estado_formulario != 'X'}">
-                    
+                    <td th:text="${index.index+1}"></td>
                     <td th:text="${fors.nombre_formulario}"></td>
                     <td>
                         <center>

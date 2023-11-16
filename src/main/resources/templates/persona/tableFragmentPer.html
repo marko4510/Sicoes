@@ -12,21 +12,24 @@
         <table class="table table-striped table-bordered zero-configuration" style="text-align: center;">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Correo</th>
                     <th>Nro de C.I</th>
+                    <th>Correo</th>
+                    <th>NIT</th>
+                    <th>NUA</th>
                     <th>Operaciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="per, index : ${personas}" th:if="${per.estado_persona != 'X'}">
-                    <td th:text="${[per].nombre_persona}"></td>
-                    <td th:text="${per.ap_paterno_persona}"></td>
-                    <td th:text="${per.ap_materno_persona}"></td>
-                    <td th:text="${per.email_persona}"></td>
+                    <td th:text="${index.index+1}"></td>
+                    <td th:text="${per.nombre_persona+' '+per.ap_paterno_persona+' '+per.ap_materno_persona}"></td>
                     <td th:text="${per.ci_persona}"></td>
+                    <td th:text="${per.email_persona}"></td>
+                    <td th:text="${per.nit_persona != null ? per.nit_persona : 'NO REGISTRADO'}"></td>
+                    <td th:text="${per.nua_persona != null ? per.nua_persona : 'NO REGISTRADO'}"></td>
+                    
                     <td>
                         <center>
                             <a class="btn btn-warning round text-white"
