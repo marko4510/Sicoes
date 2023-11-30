@@ -58,7 +58,8 @@
                                                     <div class="controls">
                                                         <input th:field="${persona.nombre_persona}" type="text"
                                                             name="text" class="form-control mb-1 square" required
-                                                            data-validation-required-message="Deber Ingresar los Datos">
+                                                            data-validation-required-message="Deber Ingresar los Datos" onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                            style="text-transform:uppercase;">
                                                     </div>
                                                 </div>
                                             </div>

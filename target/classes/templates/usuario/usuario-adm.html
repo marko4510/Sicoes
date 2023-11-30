@@ -58,6 +58,7 @@
                                                     data-validation-required-message="Debe Seleccionar una opción"
                                                         id="select2-tags" th:field="${usuario.persona}"
                                                         name="id_persona">
+                                                        <option value="">Seleccione una persona</option>
                                                         <option th:each="per : ${personas}"
                                                             th:value="${per.id_persona}"
                                                             th:if="${per.estado_persona != 'X'}"

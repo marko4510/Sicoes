@@ -23,7 +23,7 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
-           
+
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
@@ -40,36 +40,32 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                  
+
                                     <th:block th:if="${unidad.id_unidad != null}">
-                                        <form  class="form" action="/UnidadModF" method="post" novalidate  enctype="multipart/form-data">
+                                        <form class="form" action="/UnidadModF" method="post" novalidate
+                                            enctype="multipart/form-data">
                                     </th:block>
                                     <th:block th:if="${unidad.id_unidad == null}">
-                                        <form id="form1" class="form" action="/UnidadF" method="post" novalidate  enctype="multipart/form-data">
+                                        <form id="form1" class="form" action="/UnidadF" method="post" novalidate
+                                            enctype="multipart/form-data">
                                     </th:block>
                                     <input type="hidden" th:field="${unidad.id_unidad}">
                                     <div class="form-body">
-                                       
                                         <div class="row">
-                                          
-
-                                            <div class="col-lg-3 col-md-12">
+                                            <div class="col-lg-4 col-md-12">
                                                 <div class="form-group">
                                                     <h5>Nombre de Unidad</h5>
-                                                    <input th:field="${unidad.nombre_unidad}" type="text"
-                                                    name="text" class="form-control mb-1 square">
+                                                    <div class="controls">
+                                                        <input th:field="${unidad.nombre_unidad}" type="text" name="text"
+                                                        class="form-control mb-1 square" required
+                                                        data-validation-required-message="Deber Ingresar los Datos"
+                                                        onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                        style="text-transform:uppercase;">
+                                                    </div>
                                                 </div>
                                             </div>
-                                          
-                                            
-                                          
-                                          
-
-                                    
-                                          
                                         </div>
                                     </div>
-
                                     <div class="form-actions">
                                         <button style="width:100%;" type="submit"
                                             class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
@@ -84,7 +80,6 @@
                     </div>
                 </div>
             </section>
-            
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
@@ -111,7 +106,7 @@
                     </div>
                 </div>
             </section>
-      
+
         </div>
     </div>
     <!-- END: Content-->
@@ -150,16 +145,16 @@
     </script>
 
     <script>
- 
+
         var errorMensaje = document.getElementById("errorMensaje");
-    
-        selectElement.addEventListener("input", function() {
+
+        selectElement.addEventListener("input", function () {
             if (this.value !== "") {
                 errorMensaje.textContent = "";
             }
         });
-    
-        document.getElementById("miFormulario").addEventListener("submit", function(event) {
+
+        document.getElementById("miFormulario").addEventListener("submit", function (event) {
             if (selectElement.value === "") {
                 errorMensaje.textContent = "Debe seleccionar una opción";
                 event.preventDefault();
