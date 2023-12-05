@@ -27,7 +27,6 @@ public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_proyecto;
-    private String identificador_proyecto;
     private String nombre_proyecto;
     private String numero_proyecto;
     private String estado_proyecto;
