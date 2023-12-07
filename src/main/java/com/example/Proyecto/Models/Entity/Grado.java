@@ -32,4 +32,8 @@ public class Grado {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.EAGER)
     private List<Contratacion> contratacion;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
+
 }

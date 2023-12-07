@@ -41,4 +41,8 @@ public class Modalidad {
     @JoinColumn(name = "id_tipo_modalidad")
     private TipoModalidad tipoModalidad;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modalidad", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
+
 }

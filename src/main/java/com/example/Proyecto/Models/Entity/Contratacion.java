@@ -1,8 +1,10 @@
 package com.example.Proyecto.Models.Entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,12 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -106,5 +110,9 @@ public class Contratacion {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "formulario_contratacion", joinColumns = @JoinColumn(name = "id_contratacion"), inverseJoinColumns = @JoinColumn(name = "id_formulario"))
     private Set<Formulario> formulario;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratacion", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
 
 }

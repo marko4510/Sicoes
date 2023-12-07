@@ -38,7 +38,7 @@
                         th:text="${contra.persona.nombre_persona}+' '+${contra.persona.ap_paterno_persona}+' '+${contra.persona.ap_materno_persona}">
                     </td>
                     <td th:text="${contra.grado.nombre_grado}"></td>
-                    <td th:text="${contra.persona.nit_persona}"></td>
+                    <td th:text="${contra.persona.nit_persona != null ? per.nit_persona : 'Adjudicado Sin NIT'}"></td>
                     <td th:text="${contra.monto_mensual_contratacion}"></td>
                     <td th:text="${contra.monto_anual_contratacion}"></td>
                     <td th:text="${contra.fecha_inicio_contratacion}"></td>

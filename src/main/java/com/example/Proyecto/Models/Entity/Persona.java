@@ -53,5 +53,9 @@ public class Persona {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private List<Contratacion> contratacion;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
     
 }

@@ -35,6 +35,10 @@ public class ArchivoAdjunto  {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.EAGER)
     private List<Contratacion> contratacion;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
+
 
 
 }

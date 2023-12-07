@@ -40,4 +40,8 @@ public class Proyecto {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyecto", fetch = FetchType.EAGER)
     private List<Contratacion> contratacion;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proyecto", fetch = FetchType.EAGER)
+    private List<Modificatorio> modificatorio;
 }

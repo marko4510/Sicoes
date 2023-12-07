@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card border-bottom-dark box-shadow-2 border-bottom-2">
                             <div class="card-header card-head-inverse bg-dark">
-                                <h4 class="card-title text-white" id="basic-layout-form">Registro Contratación</h4>
+                                <h4 class="card-title text-white" id="basic-layout-form">Registro Modificatorio Contratación</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -41,7 +41,7 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
 
-                                    <form id="form1" class="form" action="/previa-contratacion" method="post"
+                                    <form id="form1" class="form" action="/previa-modificatorio" method="post"
                                         novalidate enctype="multipart/form-data">
                                         <input type="hidden">
                                         <div class="form-body">
@@ -60,18 +60,18 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-12">
                                                     <div class="form-group">
-                                                        <h5>Modalidad</h5>
+                                                        <h5>Codigo Contratación</h5>
                                                         <div class="controls">
                                                             <select class="select2 form-control square"
                                                                 data-validation-required-message="Deber Ingresar los Datos"
                                                                 required id="select2-tags4"
-                                                                th:field="${contratacion.modalidad}"
-                                                                name="id_modalidad">
-                                                                <option value="">Seleccionar un Modalidad</option>
-                                                                <option th:each="moda : ${modalidades}"
-                                                                    th:value="${moda.id_modalidad}"
-                                                                    th:if="${moda.estado_modalidad != 'X'}"
-                                                                    th:text="${moda.nombre_modalidad}">
+                                                                th:field="${modificatorio.contratacion}"
+                                                                name="id_contratacion">
+                                                                <option value="">Seleccionar Contratación</option>
+                                                                <option th:each="contra : ${contrataciones}"
+                                                                    th:value="${contra.id_contratacion}"
+                                                                    th:if="${contra.estado_contratacion != 'X'}"
+                                                                    th:text="${contra.codigo_contratacion}">
                                                                 </option>
                                                             </select>
                                                         </div>

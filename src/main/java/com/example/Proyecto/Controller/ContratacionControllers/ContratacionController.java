@@ -31,6 +31,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
 import com.example.Proyecto.Models.Entity.Formulario;
+import com.example.Proyecto.Models.Entity.Modalidad;
+import com.example.Proyecto.Models.Entity.Unidad;
 import com.example.Proyecto.Models.Entity.Usuario;
 import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
@@ -68,25 +70,20 @@ public class ContratacionController {
     @Autowired
     private IFormularioService formularioService;
 
-     @Autowired
+    @Autowired
     private IArchivoAdjuntoService archivoAdjuntoService;
 
-    @RequestMapping(value = "ContratacionSe", method = RequestMethod.GET)
+    @RequestMapping(value = "ContratacionInicio", method = RequestMethod.GET)
     public String ContratacionSe(HttpServletRequest request, @Validated Contratacion contratacion, Model model)
             throws Exception {
         if (request.getSession().getAttribute("usuario") != null) {
-      
+
             List<Contratacion> contrataciones = contratacionService.findAll();
 
             model.addAttribute("contrataciones", contrataciones);
             model.addAttribute("contratacion", new Contratacion());
-            //model.addAttribute("proyectos", proyectoService.findAll());
             model.addAttribute("modalidades", modalidadService.findAll());
-            //model.addAttribute("tmodalidades", tipoModalidadService.findAll());
-            //model.addAttribute("personas", personaService.findAll());
-            //model.addAttribute("grados", gradoService.findAll());
-            //model.addAttribute("formularios", formularioService.findAll());
-        
+
             return "contratacion/gestionar-contratacion";
 
         } else {
@@ -95,15 +92,68 @@ public class ContratacionController {
 
     }
 
-    @RequestMapping(value = "ContratacionR", method = RequestMethod.GET)
-    public String ContratacionR(@Validated Contratacion contratacion, Model model, HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/previa-contratacion", method = RequestMethod.POST)
+    public String guardarContratacion(@RequestParam("gestion") String gestion,
+            @RequestParam("modalidad") Long modalidadId,
+            Model model) {
+
+        Modalidad modalidadSeleccionada = modalidadService.findOne(modalidadId);
+
+        // Añadir los datos al modelo para mostrar en la nueva vista
+        model.addAttribute("gestion", gestion);
+        model.addAttribute("modalidadSeleccionada", modalidadSeleccionada);
+        System.out.println("nooooooooooooo " + modalidadId);
+        System.out.println("nooooooooooooo " + gestion);
+
+        // Redirigir a la nueva vista
+        return "redirect:/enviar-contratacion?gestion=" + gestion + "&modalidadId=" + modalidadId;
+    }
+
+    @RequestMapping(value = "enviar-contratacion", method = RequestMethod.GET)
+    public String Contratacion(@RequestParam("gestion") String gestion,
+            @RequestParam("modalidadId") Long modalidadId, @Validated Contratacion contratacion, Model model,
+            HttpServletRequest request)
+            throws Exception {
+
+        if (request.getSession().getAttribute("usuario") != null) {
+
+            Modalidad modalidadSeleccionada = modalidadService.findOne(modalidadId);
+            String nombreModalidad = modalidadSeleccionada != null ? modalidadSeleccionada.getNombre_modalidad() : null;
+
+            List<Contratacion> contrataciones = contratacionService.findAll();
+
+            Contratacion contratacion2 = new Contratacion();
+            contratacion2.setGestion_contratacion(gestion);
+            model.addAttribute("contratacion", contratacion2);
+
+            //model.addAttribute("contrataciones", contrataciones);
+            //model.addAttribute("contratacion", new Contratacion());
+            model.addAttribute("proyectos", proyectoService.findAll());
+            model.addAttribute("tmodalidades", tipoModalidadService.findAll());
+            model.addAttribute("personas", personaService.findAll());
+            model.addAttribute("grados", gradoService.findAll());
+            model.addAttribute("formularios", formularioService.findAll());
+
+            //model.addAttribute("Rgestion", gestion);
+            //model.addAttribute("Rmodalidad", nombreModalidad);
+            model.addAttribute("Idmodalidad", modalidadSeleccionada);
+            System.out.println("Gestión: " + gestion);
+            System.out.println("ID de Modalidad: " + nombreModalidad);
+
+            return "contratacion/mostrar-contratacion";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping(value = "ContratacionL", method = RequestMethod.GET)
+    public String ContratacionR(@Validated Contratacion contratacion, Model model, HttpServletRequest request)
+            throws Exception {
 
         if (request.getSession().getAttribute("persona") != null) {
             List<Contratacion> contrataciones = contratacionService.findAll();
-           
-           
+
             model.addAttribute("contrataciones", contrataciones);
-        
 
             return "contratacion/contratacion-list";
         } else {
@@ -111,11 +161,11 @@ public class ContratacionController {
         }
     }
 
-     @RequestMapping(value = "ContratacionForm", method = RequestMethod.GET)
+    @RequestMapping(value = "ContratacionForm", method = RequestMethod.GET)
     public String ContratacionForm(HttpServletRequest request, @Validated Contratacion contratacion, Model model)
             throws Exception {
         if (request.getSession().getAttribute("usuario") != null) {
-      
+
             List<Contratacion> contrataciones = contratacionService.findAll();
 
             model.addAttribute("contrataciones", contrataciones);
@@ -126,7 +176,7 @@ public class ContratacionController {
             model.addAttribute("personas", personaService.findAll());
             model.addAttribute("grados", gradoService.findAll());
             model.addAttribute("formularios", formularioService.findAll());
-        
+
             return "contratacion/contratacion-form";
 
         } else {
@@ -137,63 +187,61 @@ public class ContratacionController {
 
     @RequestMapping(value = "ContratacionF", method = RequestMethod.POST)
     public String ContratacionF(HttpServletRequest request, @Validated Contratacion contratacion,
-    @RequestParam(value = "formulario", required = false) Long[] id_formularios) throws FileNotFoundException, IOException { 
-        
-         MultipartFile multipartFile = contratacion.getFile();
+            @RequestParam(value = "formulario", required = false) Long[] id_formularios)
+            throws FileNotFoundException, IOException {
+
+        MultipartFile multipartFile = contratacion.getFile();
         ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
-         List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
-         AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
+        List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
+        AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
 
-      if (multipartFile != null && !multipartFile.isEmpty()) {
-        try {
-            Path rootPath = Paths.get("archivos/");
-            Path rootAbsolutePath = rootPath.toAbsolutePath();
-            String rutaDirectorio = rootAbsolutePath.toString() +"/";
+        if (multipartFile != null && !multipartFile.isEmpty()) {
+            try {
+                Path rootPath = Paths.get("archivos/");
+                Path rootAbsolutePath = rootPath.toAbsolutePath();
+                String rutaDirectorio = rootAbsolutePath.toString() + "/";
 
-            if (!Files.exists(rootPath)) {
-                Files.createDirectories(rootPath);
-                System.out.println("Directorio creado: " + rutaDirectorio);
-            } else {
-                System.out.println("El directorio ya existe: " + rutaDirectorio);
+                if (!Files.exists(rootPath)) {
+                    Files.createDirectories(rootPath);
+                    System.out.println("Directorio creado: " + rutaDirectorio);
+                } else {
+                    System.out.println("El directorio ya existe: " + rutaDirectorio);
+                }
+
+                String nombreArchivo = (listArchivos.size() + 1) + contratacion.getModalidad().getNombre_modalidad()
+                        + "-" + contratacion.getGestion_contratacion() + ".pdf";
+
+                archivoAdjunto.setNombre_archivo(nombreArchivo);
+                archivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
+                archivoAdjunto.setEstado_archivo_adjunto("A");
+                ArchivoAdjunto archivoAdjunto2 = archivoAdjuntoService.registrarArchivoAdjunto(archivoAdjunto);
+
+                contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-"
+                        + contratacion.getGestion_contratacion());
+                contratacion.setArchivoAdjunto(archivoAdjunto2);
+                contratacion.setNombreArchivo(nombreArchivo);
+                contratacion.setEstado_contratacion("A");
+                contratacionService.save(contratacion);
+                Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
+
+            } catch (IOException e) {
+                System.err.println("Error al crear el directorio: " + e.getMessage());
             }
-
-            String nombreArchivo = (listArchivos.size() + 1) + contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion() + ".pdf";
-
-            archivoAdjunto.setNombre_archivo(nombreArchivo);
-            archivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
-            archivoAdjunto.setEstado_archivo_adjunto("A");
-            ArchivoAdjunto archivoAdjunto2 = archivoAdjuntoService.registrarArchivoAdjunto(archivoAdjunto);
-
-            contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
-            contratacion.setArchivoAdjunto(archivoAdjunto2);
-            contratacion.setNombreArchivo(nombreArchivo);
-            contratacion.setEstado_contratacion("A");
-            contratacionService.save(contratacion);
-            Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
-
-
-        } catch (IOException e) {
-            System.err.println("Error al crear el directorio: " + e.getMessage());
+        } else {
+            // Handle the case where no file is uploaded
         }
-    } else {
-        // Handle the case where no file is uploaded
-    }
-        
-        
 
-
-        return "redirect:/ContratacionR";
+        return "redirect:/ContratacionL";
     }
 
-
-     @RequestMapping(value = "/editar-contratacion/{id_contratacion}")
-    public String editar_contratacion(@PathVariable("id_contratacion") String id_contratacion, Model model, HttpServletRequest request)
+    @RequestMapping(value = "/editar-contratacion/{id_contratacion}")
+    public String editar_contratacion(@PathVariable("id_contratacion") String id_contratacion, Model model,
+            HttpServletRequest request)
             throws NumberFormatException, Exception {
-                  if (request.getSession().getAttribute("usuario") != null) {
+        if (request.getSession().getAttribute("usuario") != null) {
 
-                    Long id_contra = Long.parseLong(id_contratacion);
+            Long id_contra = Long.parseLong(id_contratacion);
 
-          
             model.addAttribute("contratacion", contratacionService.findOne(id_contra));
             model.addAttribute("proyectos", proyectoService.findAll());
             model.addAttribute("modalidades", modalidadService.findAll());
@@ -204,47 +252,43 @@ public class ContratacionController {
             model.addAttribute("edit", "true");
 
             return "contratacion/contratacion-form";
-                }else{
-             return "redirect:/adm/InicioAdm";
-                }
-     
-
-        
+        } else {
+            return "redirect:/adm/InicioAdm";
+        }
 
     }
 
-      @PostMapping(value = "/ContratacionModF")
+    @PostMapping(value = "/ContratacionModF")
     public String ContratacionModF(@Validated Contratacion contratacion, RedirectAttributes redirectAttrs, Model model,
             HttpServletRequest request)
             throws IOException {
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-  
+
         MultipartFile multipartFile = contratacion.getFile();
         ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
         AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
         AlfaNum alfaNum = new AlfaNum();
         String nombre_r = alfaNum.generarAlfanumerico();
-       
-
-     
 
         Path rootPath = Paths.get("archivos/");
         Path rootAbsolutePath = rootPath.toAbsolutePath();
-        String rutaDirectorio = rootAbsolutePath.toString() +"/";
-        contratacion.setNombreArchivo(nombre_r+".pdf");
+        String rutaDirectorio = rootAbsolutePath.toString() + "/";
+        contratacion.setNombreArchivo(nombre_r + ".pdf");
         Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
         if (ad == 1) {
-            ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService.buscarArchivoAdjuntoPorContratacion(contratacion.getId_contratacion());
+            ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService
+                    .buscarArchivoAdjuntoPorContratacion(contratacion.getId_contratacion());
 
             barchivoAdjunto.setNombre_archivo(contratacion.getNombreArchivo());
             barchivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
             archivoAdjuntoService.modificarArchivoAdjunto(barchivoAdjunto);
         }
-        contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
+        contratacion.setCodigo_contratacion(
+                contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
         contratacion.setEstado_contratacion("A");
         contratacionService.save(contratacion);
-       
-        return "redirect:/ContratacionR";
+
+        return "redirect:/ContratacionL";
 
     }
 
@@ -263,18 +307,17 @@ public class ContratacionController {
     public String eliminar_contrato(HttpServletRequest request, @PathVariable("id_contrato") String id_contrato)
             throws Exception {
         if (request.getSession().getAttribute("persona") != null) {
-        try {
-            Long id_contra = Long.parseLong(id_contrato);
-            Contratacion contratacion = contratacionService.findOne(id_contra);
-            
-            contratacion.setEstado_contratacion("X");
-             contratacionService.save(contratacion);
+            try {
+                Long id_contra = Long.parseLong(id_contrato);
+                Contratacion contratacion = contratacionService.findOne(id_contra);
 
-            
-            return "redirect:/ContratacionR";
-        } catch (Exception e) {
-            return "redirect:/adm/InicioAdm";
-        }
+                contratacion.setEstado_contratacion("X");
+                contratacionService.save(contratacion);
+
+                return "redirect:/ContratacionL";
+            } catch (Exception e) {
+                return "redirect:/adm/InicioAdm";
+            }
         } else {
             return "redirect:/";
         }
