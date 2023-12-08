@@ -126,16 +126,12 @@ public class ContratacionController {
             contratacion2.setGestion_contratacion(gestion);
             model.addAttribute("contratacion", contratacion2);
 
-            //model.addAttribute("contrataciones", contrataciones);
-            //model.addAttribute("contratacion", new Contratacion());
             model.addAttribute("proyectos", proyectoService.findAll());
             model.addAttribute("tmodalidades", tipoModalidadService.findAll());
             model.addAttribute("personas", personaService.findAll());
             model.addAttribute("grados", gradoService.findAll());
             model.addAttribute("formularios", formularioService.findAll());
 
-            //model.addAttribute("Rgestion", gestion);
-            //model.addAttribute("Rmodalidad", nombreModalidad);
             model.addAttribute("Idmodalidad", modalidadSeleccionada);
             System.out.println("Gestión: " + gestion);
             System.out.println("ID de Modalidad: " + nombreModalidad);

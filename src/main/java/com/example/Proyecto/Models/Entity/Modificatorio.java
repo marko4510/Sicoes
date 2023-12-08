@@ -80,4 +80,10 @@ public class Modificatorio {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_contratacion")
     private Contratacion contratacion;
+
+    // Tabla TipoModalidad
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_tipo_modalidad")
+    private TipoModalidad tipoModalidad;
 }

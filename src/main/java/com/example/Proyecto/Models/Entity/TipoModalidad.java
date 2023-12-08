@@ -37,4 +37,8 @@ public class TipoModalidad {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoModalidad", fetch = FetchType.LAZY)
     private List<Modalidad> modalidad;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoModalidad", fetch = FetchType.LAZY)
+    private List<Modificatorio> modificatorio;
+
 }
