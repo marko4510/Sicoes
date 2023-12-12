@@ -12,6 +12,7 @@ public interface IArchivoAdjuntoDao {
 
     public ArchivoAdjunto buscarArchivoAdjuntoPorConvenio(Long id_convenio);
     public ArchivoAdjunto buscarArchivoAdjuntoPorContratacion(Long id_contratacion);
+    public ArchivoAdjunto buscarArchivoAdjuntoPorModificatorio(Long id_modificatorio);
      public ArchivoAdjunto buscarArchivoAdjuntoPorResolucion(Long id_resolucion);
 
     public void modificarArchivoAdjunto(ArchivoAdjunto archivoAdjunto);

@@ -70,10 +70,10 @@
                                                     <td th:text="${modi.codigo_modificatorio}"></td>
                                                     <td th:text="${modi.cargo_servicio_modificatorio}"></td>
                                                     <td
-                                                        th:text="${modi.persona.nombre_persona}+' '+${modi.persona.ap_paterno_persona}+' '+${modi.persona.ap_materno_persona}">
+                                                        th:text="${modi.persona.nombre_persona}">
                                                     </td>
                                                     <td th:text="${modi.grado.nombre_grado}"></td>
-                                                    <td th:text="${modi.persona.nit_persona != null ? per.nit_persona : 'Adjudicado Sin NIT'}"></td>
+                                                    <td th:text="${modi.persona.nit_persona != null ? modi.persona.nit_persona : 'Adjudicado Sin NIT'}"></td>
                                                     <td th:text="${modi.monto_mensual_modificatorio}"></td>
                                                     <td th:text="${modi.monto_anual_modificatorio}"></td>
                                                     <td th:text="${modi.fecha_inicio_modificatorio}"></td>
@@ -172,7 +172,7 @@
 
             $("#id_a").val(id_a);
 
-            $("#iframe-pdf").attr("src", `../../../openFileContrato/${id_a}`)
+            $("#iframe-pdf").attr("src", `../../../openFileModificatorio/${id_a}`)
 
 
         }

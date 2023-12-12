@@ -53,6 +53,11 @@ public class ArchivoAdjuntoServiceImpl implements IArchivoAdjuntoService {
         return archivoAdjuntoDao.buscarArchivoAdjuntoPorContratacion(id_contratacion);
     }
 
+    @Override
+    public ArchivoAdjunto buscarArchivoAdjuntoPorModificatorio(Long id_modificatorio) {
+    return archivoAdjuntoDao.buscarArchivoAdjuntoPorModificatorio(id_modificatorio);
+    }
+
   
 
  
