@@ -21,26 +21,22 @@ import com.example.Proyecto.Models.IService.IUsuarioService;
 
 @Controller
 public class UsuarioController {
-    
-     @Autowired
+
+    @Autowired
     private IPersonaService personaService;
 
     @Autowired
     private IUsuarioService usuarioService;
-
-  
 
     @RequestMapping(value = "UsuarioR", method = RequestMethod.GET)
     public String UsuarioR(@Validated Usuario usuario, Model model, HttpServletRequest request) throws Exception {
 
         if (request.getSession().getAttribute("persona") != null) {
             List<Persona> personas = personaService.findAll();
-             List<Usuario> usuarios = usuarioService.findAll();
-           
-           
+            List<Usuario> usuarios = usuarioService.findAll();
+
             model.addAttribute("personas", personas);
             model.addAttribute("usuarios", usuarios);
-        
 
             return "usuario/usuario-adm";
         } else {
@@ -49,17 +45,15 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "UsuarioF", method = RequestMethod.POST)
-    public String UsuarioF(HttpServletRequest request, @Validated Usuario usuario) { 
+    public String UsuarioF(HttpServletRequest request, @Validated Usuario usuario) {
 
         usuario.setEstado("A");
         usuarioService.save(usuario);
 
-
-
         return "redirect:/UsuarioR";
     }
 
-     @RequestMapping(value = "/editar-usuario/{id_usuario}")
+    @RequestMapping(value = "/editar-usuario/{id_usuario}")
     public String editar_usu(@PathVariable("id_usuario") String id_usuario, Model model, HttpServletRequest request) {
         if (request.getSession().getAttribute("persona") != null) {
             try {
@@ -67,9 +61,9 @@ public class UsuarioController {
                 Usuario usuario = usuarioService.findOne(id_usu);
                 model.addAttribute("usuario", usuario);
 
-            List<Persona> personas = personaService.findAll();
-             List<Usuario> usuarios = usuarioService.findAll();
-               
+                List<Persona> personas = personaService.findAll();
+                List<Usuario> usuarios = usuarioService.findAll();
+
                 model.addAttribute("personas", personas);
                 model.addAttribute("usuarios", usuarios);
                 return "usuario/usuario-adm";
@@ -84,13 +78,10 @@ public class UsuarioController {
 
     }
 
-
     @RequestMapping(value = "/UsuarioModF", method = RequestMethod.POST) // Enviar datos de Registro a Lista
     public String usuario_mod(HttpServletRequest request, @Validated Usuario usuario,
             RedirectAttributes redirectAttrs) { // validar los datos capturados (1)
 
-
-        
         usuario.setEstado("A");
         usuarioService.save(usuario);
         return "redirect:/UsuarioR";
@@ -100,31 +91,28 @@ public class UsuarioController {
     public String eliminar_usuario(HttpServletRequest request, @PathVariable("id_usaurio") String id_usuario)
             throws Exception {
         if (request.getSession().getAttribute("persona") != null) {
-        try {
-            Long id_usu = Long.parseLong(id_usuario);
-            Usuario usuario = usuarioService.findOne(id_usu);
-            usuario.setEstado("X");
-            usuario.setContrasena(usuario.getContrasena());
-            usuarioService.save(usuario);
-            
-        
-            return "redirect:/UsuarioR";
-        } catch (Exception e) {
-            return "redirect:/AdmPG";
-        }
+            try {
+                Long id_usu = Long.parseLong(id_usuario);
+                Usuario usuario = usuarioService.findOne(id_usu);
+                usuario.setEstado("X");
+                usuario.setContrasena(usuario.getContrasena());
+                usuarioService.save(usuario);
+
+                return "redirect:/UsuarioR";
+            } catch (Exception e) {
+                return "redirect:/AdmPG";
+            }
         } else {
             return "redirect:/";
         }
     }
 
-
     @GetMapping("/tableUsuarios")
     public String tableUsuarios(@Validated Usuario usuario, Model model) throws Exception {
 
         List<Usuario> usuarios = usuarioService.findAll();
- 
-        model.addAttribute("usuarios", usuarios);
 
+        model.addAttribute("usuarios", usuarios);
 
         return "usuario/tableFragment :: table";
     }

@@ -24,23 +24,20 @@
             <tbody>
                 <tr th:each="per, index : ${personas}" th:if="${per.estado_persona != 'X'}">
                     <td th:text="${index.index+1}"></td>
-                    <td th:text="${per.nombre_persona+' '+per.ap_paterno_persona+' '+per.ap_materno_persona}"></td>
+                    <td th:text="${per.nombre_persona}"></td>
                     <td th:text="${per.ci_persona}"></td>
                     <td th:text="${per.email_persona}"></td>
                     <td th:text="${per.nit_persona != null ? per.nit_persona : 'NO REGISTRADO'}"></td>
                     <td th:text="${per.nua_persona != null ? per.nua_persona : 'NO REGISTRADO'}"></td>
-                    
                     <td>
                         <center>
-                            <a class="btn btn-warning round text-white"
-                                th:href="${'/editar-persona/'+per.id_persona}">
+                            <a class="btn btn-warning round text-white" th:href="${'/editar-persona/'+per.id_persona}">
                                 <i class="la la-cog"></i>
                             </a>
-                            <a  th:id="${per.id_persona}" class="btn btn-danger round text-white"
+                            <a th:id="${per.id_persona}" class="btn btn-danger round text-white"
                                 onclick="MandarURL(this.id)">
                                 <i class="la la-trash"></i>
                             </a>
-                            <!-- <a class="btn btn-warning round btn-min-width box-shadow-3 mr-1 mb-1" th:attr="onclick=${'MandarURL('+id_encryptado[__${index.index}__]+')'}" th:href="${'/adm/editar-persona/'+id_encryptado[__${index.index}__]}"><i class="la la-trash"></i></a> -->
                         </center>
                     </td>
                 </tr>

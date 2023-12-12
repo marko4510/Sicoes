@@ -23,7 +23,7 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
-           
+
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
@@ -40,29 +40,30 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                  
+
                                     <th:block th:if="${usuario.id_usuario != null}">
-                                        <form  class="form" action="/UsuarioModF" method="post" novalidate  enctype="multipart/form-data">
+                                        <form class="form" action="/UsuarioModF" method="post" novalidate
+                                            enctype="multipart/form-data">
                                     </th:block>
                                     <th:block th:if="${usuario.id_usuario == null}">
-                                        <form id="form1" class="form" action="/UsuarioF" method="post" novalidate  enctype="multipart/form-data">
+                                        <form id="form1" class="form" action="/UsuarioF" method="post" novalidate
+                                            enctype="multipart/form-data">
                                     </th:block>
                                     <input type="hidden" th:field="${usuario.id_usuario}">
                                     <div class="form-body">
-                                       
+
                                         <div class="row">
                                             <div class="col-lg-4 col-md-12">
                                                 <div class="form-group">
                                                     <h5>Persona</h5>
                                                     <select class="select2 form-control square" required
-                                                    data-validation-required-message="Debe Seleccionar una opción"
+                                                        data-validation-required-message="Debe Seleccionar una opción"
                                                         id="select2-tags" th:field="${usuario.persona}"
                                                         name="id_persona">
                                                         <option value="">Seleccione una persona</option>
-                                                        <option th:each="per : ${personas}"
-                                                            th:value="${per.id_persona}"
+                                                        <option th:each="per : ${personas}" th:value="${per.id_persona}"
                                                             th:if="${per.estado_persona != 'X'}"
-                                                            th:text="${per.nombre_persona}+' '+${per.ap_paterno_persona}+' '+${per.ap_materno_persona}">
+                                                            th:text="${per.nombre_persona}">
                                                         </option>
                                                     </select>
                                                 </div>
@@ -73,9 +74,8 @@
                                                 <div class="form-group">
                                                     <h5>Rol</h5>
                                                     <select class="select2 form-control square" required
-                                                    data-validation-required-message="Debe Seleccionar una opción"
-                                                        id="select2-tags6" th:field="${usuario.estado}"
-                                                        name="estadp">
+                                                        data-validation-required-message="Debe Seleccionar una opción"
+                                                        id="select2-tags6" th:field="${usuario.estado}" name="estadp">
                                                         <option value="">Seleccione un Rol</option>
                                                         <option value="A">Administrativo</option>
                                                         <option value="AU">Autoridad</option>
@@ -86,29 +86,29 @@
                                                 </div>
                                             </div>
 
-                                          
+
                                             <div class="col-lg-3 col-md-12">
                                                 <div class="form-group">
                                                     <h5>Nombre Usuario</h5>
-                                                    <input th:field="${usuario.usuario_nom}" type="text"
-                                                    name="text" class="form-control mb-1 square">
+                                                    <input th:field="${usuario.usuario_nom}" type="text" name="text"
+                                                        class="form-control mb-1 square">
                                                 </div>
                                             </div>
-                                          
+
                                             <div class="col-lg-2 col-md-12">
                                                 <div class="form-group">
                                                     <h5>Contraseña</h5>
-                                                    <input th:field="${usuario.contrasena}" type="text"
-                                                    name="text" class="form-control mb-1 square">
-        
+                                                    <input th:field="${usuario.contrasena}" type="text" name="text"
+                                                        class="form-control mb-1 square">
+
                                                 </div>
                                             </div>
 
-                                          
-                                          
 
-                                    
-                                          
+
+
+
+
                                         </div>
                                     </div>
 
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="basic-form-layouts">
                 <div class="row match-height">
                     <div class="col-md-12">
@@ -153,7 +153,7 @@
                     </div>
                 </div>
             </section>
-      
+
         </div>
     </div>
     <!-- END: Content-->
@@ -192,16 +192,16 @@
     </script>
 
     <script>
- 
+
         var errorMensaje = document.getElementById("errorMensaje");
-    
-        selectElement.addEventListener("input", function() {
+
+        selectElement.addEventListener("input", function () {
             if (this.value !== "") {
                 errorMensaje.textContent = "";
             }
         });
-    
-        document.getElementById("miFormulario").addEventListener("submit", function(event) {
+
+        document.getElementById("miFormulario").addEventListener("submit", function (event) {
             if (selectElement.value === "") {
                 errorMensaje.textContent = "Debe seleccionar una opción";
                 event.preventDefault();
