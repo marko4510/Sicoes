@@ -34,5 +34,12 @@ public class ModificatorioServiceImpl implements IModificatorioService{
     public void delete(Long id) {
         modificatorioDao.deleteById(id);
     }
+
+    @Override
+    public Long cantidadModificatorio(Long id_modificatorio) {
+        return modificatorioDao.cantidadModificatorio(id_modificatorio);
+    }
+
+    
     
 }

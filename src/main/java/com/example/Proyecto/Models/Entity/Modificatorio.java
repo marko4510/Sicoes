@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -44,6 +46,12 @@ public class Modificatorio {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_fin_modificatorio;
+
+    @Transient
+    private MultipartFile file;
+
+    @Transient
+    private String nombreArchivo; 
 
     // Tabla Modalidad
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })

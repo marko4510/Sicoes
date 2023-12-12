@@ -13,4 +13,6 @@ public interface IModificatorioService {
     public Modificatorio findOne(Long id);
 
     public void delete(Long id);
+
+    public Long cantidadModificatorio(Long id_modificatorio);
 }
