@@ -169,10 +169,10 @@ public class ModificatorioController {
 
                         Proyecto proyectoSelec = proyectoService.findOne(codigoContratacion9);
 
-                        //Long cantidadM =modificatorioService.cantidadModificatorio(contratacionId);
                         Long cantidadM = modificatorioService.cantidadModificatorio(contratacionId);
-                        String cantidadComoString = (cantidadM != null) ? cantidadM.toString() : null;
+                        String cantidadComoString = (cantidadM != null) ? String.valueOf(cantidadM + 1) : null;
 
+                        System.out.println("vamos a ver "+cantidadComoString);
 
                         Modificatorio modificatorio2 = new Modificatorio();
                         modificatorio2.setGestion_modificatorio(gestion);
@@ -198,11 +198,8 @@ public class ModificatorioController {
                         model.addAttribute("Idgrado", gradoService.findAll());
                         model.addAttribute("Idproyecto", proyectoService.findAll());
 
-                        //List<Modificatorio> Modif = modificatorioService.cantidadModificatorio(contratacionId);
-                        //model.addAttribute("listL", Modif.size());
 
                         //model.addAttribute("cantmodifi", modificatorioService.cantidadModificatorio(contratacionId));
-                        //System.out.println("gggggggggggggg"+cantmodifi);
 
                         System.out.println("Gestión: " + gestion);
                         System.out.println("ID de Modalidad: " + codigoContratacion);
