@@ -338,43 +338,10 @@
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row mx-auto">
-                                                    <label class="col-md-4 label-control">Modificatorio</label>
-                                                    <div class="col-md-6">
-                                                        <select class="select2 form-control square" id="select2-tags22"
-                                                            th:field="${contratacion.modificatorio_contratacion}"
-                                                            name="id_modificatorio">
-                                                            <option value="no" selected>NO</option>
-                                                            <option value="si">SI</option>
-
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row mx-auto">
-                                                    <label class="col-md-4 label-control">Nro Modificación</label>
-                                                    <div class="col-md-6">
-                                                        <select class="select2 form-control square" id="select2-tags21"
-                                                            th:field="${contratacion.nro_modificacion_contratacion}"
-                                                            name="id_modificatorio">
-                                                            <option value="0">0</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <br>
                                         <div class="row">
 
-                                            <div class="col-md-10">
+                                            <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
                                                     <label class="col-md-3 label-control" for="userinput6">Adjuntar
                                                         Documento</label>
@@ -383,6 +350,19 @@
                                                         <input type="file" class="form-control-file" id="fileInput"
                                                             name="pdfFile" accept=".pdf"
                                                             th:field="${contratacion.file}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control"
+                                                        for="userinput6" th:text="${TexC+'/'}" >Codigo</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="numeroC"
+                                                            class="form-control mb-1 square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
                                                     </div>
                                                 </div>
                                             </div>

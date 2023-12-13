@@ -2,13 +2,10 @@ package com.example.Proyecto.Controller.ContratacionControllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
-import com.example.Proyecto.Models.Entity.Formulario;
 import com.example.Proyecto.Models.Entity.Modalidad;
-import com.example.Proyecto.Models.Entity.Unidad;
 import com.example.Proyecto.Models.Entity.Usuario;
 import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
@@ -44,7 +39,6 @@ import com.example.Proyecto.Models.IService.IProyectoService;
 import com.example.Proyecto.Models.IService.ITipoModalidadService;
 import com.example.Proyecto.Models.Otros.AdjuntarArchivo;
 import com.example.Proyecto.Models.Otros.AlfaNum;
-import com.example.Proyecto.Models.Otros.Encryptar;
 
 @Controller
 public class ContratacionController {
@@ -136,54 +130,20 @@ public class ContratacionController {
             System.out.println("Gestión: " + gestion);
             System.out.println("ID de Modalidad: " + nombreModalidad);
 
+            String var1 = nombreModalidad+"-"+gestion;
+            model.addAttribute("TexC", var1);
+
             return "contratacion/mostrar-contratacion";
         } else {
             return "redirect:/";
         }
     }
 
-    @RequestMapping(value = "ContratacionL", method = RequestMethod.GET)
-    public String ContratacionR(@Validated Contratacion contratacion, Model model, HttpServletRequest request)
-            throws Exception {
-
-        if (request.getSession().getAttribute("persona") != null) {
-            List<Contratacion> contrataciones = contratacionService.findAll();
-
-            model.addAttribute("contrataciones", contrataciones);
-
-            return "contratacion/contratacion-list";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @RequestMapping(value = "ContratacionForm", method = RequestMethod.GET)
-    public String ContratacionForm(HttpServletRequest request, @Validated Contratacion contratacion, Model model)
-            throws Exception {
-        if (request.getSession().getAttribute("usuario") != null) {
-
-            List<Contratacion> contrataciones = contratacionService.findAll();
-
-            model.addAttribute("contrataciones", contrataciones);
-            model.addAttribute("contratacion", new Contratacion());
-            model.addAttribute("proyectos", proyectoService.findAll());
-            model.addAttribute("modalidades", modalidadService.findAll());
-            model.addAttribute("tmodalidades", tipoModalidadService.findAll());
-            model.addAttribute("personas", personaService.findAll());
-            model.addAttribute("grados", gradoService.findAll());
-            model.addAttribute("formularios", formularioService.findAll());
-
-            return "contratacion/contratacion-form";
-
-        } else {
-            return "redirect:/";
-        }
-
-    }
+    
 
     @RequestMapping(value = "ContratacionF", method = RequestMethod.POST)
     public String ContratacionF(HttpServletRequest request, @Validated Contratacion contratacion,
-            @RequestParam(value = "formulario", required = false) Long[] id_formularios)
+            @RequestParam(value = "formulario", required = false) Long[] id_formularios, @RequestParam("numeroC") String numeroC)
             throws FileNotFoundException, IOException {
 
         MultipartFile multipartFile = contratacion.getFile();
@@ -212,8 +172,7 @@ public class ContratacionController {
                 archivoAdjunto.setEstado_archivo_adjunto("A");
                 ArchivoAdjunto archivoAdjunto2 = archivoAdjuntoService.registrarArchivoAdjunto(archivoAdjunto);
 
-                contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-"
-                        + contratacion.getGestion_contratacion());
+                contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion()+"/"+numeroC);
                 contratacion.setArchivoAdjunto(archivoAdjunto2);
                 contratacion.setNombreArchivo(nombreArchivo);
                 contratacion.setEstado_contratacion("A");
@@ -230,6 +189,20 @@ public class ContratacionController {
         return "redirect:/ContratacionL";
     }
 
+    @RequestMapping(value = "ContratacionL", method = RequestMethod.GET)
+    public String ContratacionR(@Validated Contratacion contratacion, Model model, HttpServletRequest request)
+            throws Exception {
+
+        if (request.getSession().getAttribute("persona") != null) {
+            List<Contratacion> contrataciones = contratacionService.findAll();
+
+            model.addAttribute("contrataciones", contrataciones);
+
+            return "contratacion/contratacion-list";
+        } else {
+            return "redirect:/";
+        }
+    }
     @RequestMapping(value = "/editar-contratacion/{id_contratacion}")
     public String editar_contratacion(@PathVariable("id_contratacion") String id_contratacion, Model model,
             HttpServletRequest request)
@@ -247,7 +220,7 @@ public class ContratacionController {
             model.addAttribute("formularios", formularioService.findAll());
             model.addAttribute("edit", "true");
 
-            return "contratacion/contratacion-form";
+            return "contratacion/mostrar-contratacion";
         } else {
             return "redirect:/adm/InicioAdm";
         }
