@@ -19,11 +19,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.Proyecto.Models.Entity.ArchivoAdjunto;
 import com.example.Proyecto.Models.Entity.Contratacion;
@@ -33,6 +35,8 @@ import com.example.Proyecto.Models.Entity.Modificatorio;
 import com.example.Proyecto.Models.Entity.Persona;
 import com.example.Proyecto.Models.Entity.Proyecto;
 import com.example.Proyecto.Models.Entity.TipoModalidad;
+import com.example.Proyecto.Models.Entity.Unidad;
+import com.example.Proyecto.Models.Entity.Usuario;
 import com.example.Proyecto.Models.IService.IArchivoAdjuntoService;
 import com.example.Proyecto.Models.IService.IContratacionService;
 import com.example.Proyecto.Models.IService.IGradoService;
@@ -42,6 +46,7 @@ import com.example.Proyecto.Models.IService.IPersonaService;
 import com.example.Proyecto.Models.IService.IProyectoService;
 import com.example.Proyecto.Models.IService.ITipoModalidadService;
 import com.example.Proyecto.Models.Otros.AdjuntarArchivo;
+import com.example.Proyecto.Models.Otros.AlfaNum;
 
 @Controller
 public class ModificatorioController {
@@ -116,8 +121,6 @@ public class ModificatorioController {
 
                 if (request.getSession().getAttribute("usuario") != null) {
 
-                        
-
                         Contratacion contratacionSeleccionada = contratacionService.findOne(contratacionId);
 
                         String codigoContratacion = contratacionSeleccionada != null
@@ -177,7 +180,7 @@ public class ModificatorioController {
                         Long cantidadM = modificatorioService.cantidadModificatorio(contratacionId);
                         String cantidadComoString = (cantidadM != null) ? String.valueOf(cantidadM + 1) : null;
 
-                        System.out.println("vamos a ver "+cantidadComoString);
+                        System.out.println("vamos a ver " + cantidadComoString);
 
                         Modificatorio modificatorio2 = new Modificatorio();
                         modificatorio2.setGestion_modificatorio(gestion);
@@ -203,8 +206,8 @@ public class ModificatorioController {
                         model.addAttribute("Idgrado", gradoService.findAll());
                         model.addAttribute("Idproyecto", proyectoService.findAll());
 
-
-                        //model.addAttribute("cantmodifi", modificatorioService.cantidadModificatorio(contratacionId));
+                        // model.addAttribute("cantmodifi",
+                        // modificatorioService.cantidadModificatorio(contratacionId));
 
                         System.out.println("Gestión: " + gestion);
                         System.out.println("ID de Modalidad: " + codigoContratacion);
@@ -281,17 +284,80 @@ public class ModificatorioController {
                         return "redirect:/";
                 }
         }
-        
-        @RequestMapping(value = "/openFileModificatorio/{id}", method = RequestMethod.GET, produces = "application/pdf")
-    public @ResponseBody FileSystemResource abrirArchivoMedianteResourse(HttpServletResponse response,
-        @PathVariable("id") long id_modificatorio) throws FileNotFoundException {
-        
-        ArchivoAdjunto ArchivoAdjuntos = archivoAdjuntoService.buscarArchivoAdjuntoPorModificatorio(id_modificatorio);
-        File file = new File(ArchivoAdjuntos.getRuta_archivo_adjunto() + ArchivoAdjuntos.getNombre_archivo());
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "inline; filename=" + file.getName());
-        response.setHeader("Content-Length", String.valueOf(file.length()));
-        return new FileSystemResource(file);
-    }
 
+        @RequestMapping(value = "/openFileModificatorio/{id}", method = RequestMethod.GET, produces = "application/pdf")
+        public @ResponseBody FileSystemResource abrirArchivoMedianteResourse(HttpServletResponse response,
+                        @PathVariable("id") long id_modificatorio) throws FileNotFoundException {
+
+                ArchivoAdjunto ArchivoAdjuntos = archivoAdjuntoService
+                                .buscarArchivoAdjuntoPorModificatorio(id_modificatorio);
+                File file = new File(ArchivoAdjuntos.getRuta_archivo_adjunto() + ArchivoAdjuntos.getNombre_archivo());
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition", "inline; filename=" + file.getName());
+                response.setHeader("Content-Length", String.valueOf(file.length()));
+                return new FileSystemResource(file);
+        }
+
+        @RequestMapping(value = "/editar-modificatorio/{id_modificatorio}")
+        public String editar_modificatorio(@PathVariable("id_modificatorio") String id_modificatorio, Model model,
+                        HttpServletRequest request)
+                        throws NumberFormatException, Exception {
+                if (request.getSession().getAttribute("usuario") != null) {
+
+                        Long id_mod = Long.parseLong(id_modificatorio);
+                        Modificatorio modificatorio = modificatorioService.findOne(id_mod);
+
+                        // List<TipoModalidad> tipoModalidades = tipoModalidadService.findAll();
+                        // model.addAttribute("IdTipomodalidad", tipoModalidades);
+
+                        model.addAttribute("Idmodalidad", modalidadService.findAll());
+                        model.addAttribute("IdTipomodalidad", tipoModalidadService.findAll());
+
+                        model.addAttribute("modificatorio", modificatorio);
+
+                        return "modificatorio/mostrar-modificatorio";
+                } else {
+                        return "redirect:/";
+                }
+
+        }
+
+        /* 
+
+        @PostMapping(value = "/ContratacionModF")
+        public String ContratacionModF(@Validated Modificatorio modificatorio, RedirectAttributes redirectAttrs,
+                        Model model,
+                        HttpServletRequest request)
+                        throws IOException {
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+
+                MultipartFile multipartFile = modificatorio.getFile();
+                ArchivoAdjunto archivoAdjunto = new ArchivoAdjunto();
+                AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
+                AlfaNum alfaNum = new AlfaNum();
+                String nombre_r = alfaNum.generarAlfanumerico();
+
+                Path rootPath = Paths.get("archivos/");
+                Path rootAbsolutePath = rootPath.toAbsolutePath();
+                String rutaDirectorio = rootAbsolutePath.toString() + "/";
+                modificatorio.setNombreArchivo(nombre_r + ".pdf");
+                Integer ad = adjuntarArchivo.adjuntarArchivoModificatorio(modificatorio, rutaDirectorio);
+                if (ad == 1) {
+                        ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService
+                                        .buscarArchivoAdjuntoPorContratacion(contratacion.getId_contratacion());
+
+                        barchivoAdjunto.setNombre_archivo(contratacion.getNombreArchivo());
+                        barchivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
+                        archivoAdjuntoService.modificarArchivoAdjunto(barchivoAdjunto);
+                }
+                contratacion.setCodigo_contratacion(
+                                contratacion.getModalidad().getNombre_modalidad() + "-"
+                                                + contratacion.getGestion_contratacion());
+                contratacion.setEstado_contratacion("A");
+                contratacionService.save(contratacion);
+
+                return "redirect:/ContratacionL";
+
+        }
+        */
 }
