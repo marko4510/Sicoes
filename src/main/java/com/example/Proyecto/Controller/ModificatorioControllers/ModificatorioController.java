@@ -312,7 +312,9 @@ public class ModificatorioController {
 
                         model.addAttribute("Idmodalidad", modalidadService.findAll());
                         model.addAttribute("IdTipomodalidad", tipoModalidadService.findAll());
-
+                        model.addAttribute("Idpersona", personaService.findAll());
+                        model.addAttribute("Idgrado", gradoService.findAll());
+                        model.addAttribute("Idproyecto", proyectoService.findAll());
                         model.addAttribute("modificatorio", modificatorio);
 
                         return "modificatorio/mostrar-modificatorio";
@@ -354,7 +356,7 @@ public class ModificatorioController {
                 modificatorio.setEstado_modificatorio("A");
                 modificatorioService.save(modificatorio);
 
-                return "redirect:/ContratacionL";
+                return "redirect:/ModificatorioL";
 
         }
         
