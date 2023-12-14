@@ -322,10 +322,10 @@ public class ModificatorioController {
 
         }
 
-        /* 
+        
 
-        @PostMapping(value = "/ContratacionModF")
-        public String ContratacionModF(@Validated Modificatorio modificatorio, RedirectAttributes redirectAttrs,
+        @PostMapping(value = "/ModificatorioModF")
+        public String ModificatorioModF(@Validated Modificatorio modificatorio, RedirectAttributes redirectAttrs,
                         Model model,
                         HttpServletRequest request)
                         throws IOException {
@@ -343,21 +343,19 @@ public class ModificatorioController {
                 modificatorio.setNombreArchivo(nombre_r + ".pdf");
                 Integer ad = adjuntarArchivo.adjuntarArchivoModificatorio(modificatorio, rutaDirectorio);
                 if (ad == 1) {
-                        ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService
-                                        .buscarArchivoAdjuntoPorContratacion(contratacion.getId_contratacion());
+                        ArchivoAdjunto barchivoAdjunto = archivoAdjuntoService.buscarArchivoAdjuntoPorModificatorio(modificatorio.getId_modificatorio());
+                       
 
-                        barchivoAdjunto.setNombre_archivo(contratacion.getNombreArchivo());
+                        barchivoAdjunto.setNombre_archivo(modificatorio.getNombreArchivo());
                         barchivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
                         archivoAdjuntoService.modificarArchivoAdjunto(barchivoAdjunto);
                 }
-                contratacion.setCodigo_contratacion(
-                                contratacion.getModalidad().getNombre_modalidad() + "-"
-                                                + contratacion.getGestion_contratacion());
-                contratacion.setEstado_contratacion("A");
-                contratacionService.save(contratacion);
+               
+                modificatorio.setEstado_modificatorio("A");
+                modificatorioService.save(modificatorio);
 
                 return "redirect:/ContratacionL";
 
         }
-        */
+        
 }
