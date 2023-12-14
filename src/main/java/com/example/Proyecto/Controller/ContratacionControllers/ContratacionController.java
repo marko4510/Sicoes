@@ -131,6 +131,7 @@ public class ContratacionController {
             System.out.println("ID de Modalidad: " + nombreModalidad);
 
             String var1 = nombreModalidad+"-"+gestion;
+            model.addAttribute("reg", "true");
             model.addAttribute("TexC", var1);
 
             return "contratacion/mostrar-contratacion";
@@ -229,7 +230,7 @@ public class ContratacionController {
 
     @PostMapping(value = "/ContratacionModF")
     public String ContratacionModF(@Validated Contratacion contratacion, RedirectAttributes redirectAttrs, Model model,
-            HttpServletRequest request)
+            HttpServletRequest request, @RequestParam(value = "numeroC", required = false) String numeroC)
             throws IOException {
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 
@@ -252,8 +253,10 @@ public class ContratacionController {
             barchivoAdjunto.setRuta_archivo_adjunto(rutaDirectorio);
             archivoAdjuntoService.modificarArchivoAdjunto(barchivoAdjunto);
         }
-        contratacion.setCodigo_contratacion(
-                contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion());
+        if (numeroC != null) {
+        contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion()+"/"+numeroC);      
+        }
+        contratacion.setCodigo_contratacion(contratacion.getCodigo_contratacion());
         contratacion.setEstado_contratacion("A");
         contratacionService.save(contratacion);
 

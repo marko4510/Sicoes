@@ -58,7 +58,19 @@
                                         <h4 class="form-section"><i class="la la-archive"></i> Información de la
                                             Contratación</h4>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" th:if="${reg}">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control"
+                                                        for="userinput6"  >Número de Contrato</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="numeroC"
+                                                            class="form-control mb-1 square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" >
                                                 <div class="form-group row mx-auto">
                                                     <label class="col-md-5 label-control" for="userinput6">Cargo del
                                                         Servicio</label>
@@ -71,6 +83,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group row mx-auto">
                                                     <label class="col-md-4 label-control"
@@ -198,7 +211,7 @@
                                                             required id="select2-tags4"
                                                             th:field="${contratacion.modalidad}"
                                                             name="id_modalidad">
-                                                            <option th:each="moda : ${Idmodalidad}"
+                                                            <option th:each="moda : ${modalidades}"
                                                                 th:value="${moda.id_modalidad}"
                                                                 th:if="${moda.estado_modalidad != 'X'}"
                                                                 th:text="${moda.nombre_modalidad}">
@@ -354,21 +367,23 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group row mx-auto">
-                                                    <label class="col-md-4 label-control"
-                                                        for="userinput6" th:text="${TexC+'/'}" >Codigo</label>
-                                                    <div class="col-md-6">
-                                                        <input type="text" name="numeroC"
-                                                            class="form-control mb-1 square"
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            required>
-                                                    </div>
+                                          
+
+                                            <div class="col-md-4" th:if="${edit}">
+                                                <div class="form-group">
+                                                    <label>Código</label>
+                                                    <input readonly type="text" class="form-control" placeholder="col-md-5" th:value="${contratacion.modalidad.nombre_modalidad+contratacion.gestion_contratacion +'/'}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1" th:if="${edit}">
+                                                <div class="form-group">
+                                                    <label>Número</label>
+                                                    <input type="text" class="form-control" placeholder="0" name="numeroC">
                                                 </div>
                                             </div>
 
                                         </div>
-
+                                       
 
                                         <h4 class="form-section"><i class="la la-envelope"></i> Información de Boletas
                                         </h4>
