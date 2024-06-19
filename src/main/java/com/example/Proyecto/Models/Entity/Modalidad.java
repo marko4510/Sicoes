@@ -32,17 +32,17 @@ public class Modalidad {
     private String estado_modalidad;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modalidad", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modalidad", fetch = FetchType.LAZY)
     private List<Contratacion> contratacion;
 
     // Tabla Tipo Modalidad
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_modalidad")
     private TipoModalidad tipoModalidad;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modalidad", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modalidad", fetch = FetchType.LAZY)
     private List<Modificatorio> modificatorio;
 
 }

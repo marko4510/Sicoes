@@ -30,7 +30,7 @@ public class TipoModalidad {
 
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoModalidad", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoModalidad", fetch = FetchType.LAZY)
     private List<Contratacion> contratacion;
 
     @JsonIgnore

@@ -30,6 +30,6 @@ public class Unidad {
 
     //LISTA DE RELACION CON LA ENTIDAD PROYECTO
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidad", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidad", fetch = FetchType.LAZY)
     private List<Proyecto> proyectos;
 }

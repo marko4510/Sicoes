@@ -29,11 +29,11 @@ public class Grado {
     private String estado_grado;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.LAZY)
     private List<Contratacion> contratacion;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grado", fetch = FetchType.LAZY)
     private List<Modificatorio> modificatorio;
 
 }

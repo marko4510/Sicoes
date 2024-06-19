@@ -32,7 +32,7 @@ private static final long serialVersionUID = 2629195288020321924L;
 
     // Tabla Persona
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona")
     private Persona persona;
 }

@@ -127,6 +127,7 @@ public class ContratacionController {
             model.addAttribute("formularios", formularioService.findAll());
 
             model.addAttribute("Idmodalidad", modalidadSeleccionada);
+            model.addAttribute("modalidades", modalidadService.findAll());
             System.out.println("Gestión: " + gestion);
             System.out.println("ID de Modalidad: " + nombreModalidad);
 

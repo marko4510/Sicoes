@@ -201,7 +201,27 @@
 
                                         <div class="row">
 
-                                            <div class="col-md-6">
+                                            <div th:if="${reg == 'true'}" class="col-md-6">
+                                                <div class="form-group row mx-auto">
+                                                    <label class="col-md-4 label-control"
+                                                        for="userinput6">Modalidad</label>
+                                                    <div class="col-md-6">
+                                                        <select class="select2 form-control square"
+                                                            data-validation-required-message="Deber Ingresar los Datos"
+                                                            required id="select2-tags4"
+                                                            th:field="${contratacion.modalidad}"
+                                                            name="id_modalidad">
+                                                            <option 
+                                                                th:value="${Idmodalidad.id_modalidad}"
+                                                                th:if="${Idmodalidad.estado_modalidad != 'X'}"
+                                                                th:text="${Idmodalidad.nombre_modalidad}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div th:if="${edit == 'true'}" class="col-md-6">
                                                 <div class="form-group row mx-auto">
                                                     <label class="col-md-4 label-control"
                                                         for="userinput6">Modalidad</label>
@@ -448,12 +468,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-actions">
-                                        <button style="width:100%;" type="submit" id="Dsubmit"
+                                    <div class="form-actions" style="text-align: center;">
+                                        <button th:if="${reg == 'true'}" type="submit" id="Dsubmit"
                                             class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
                                             data-animation="pulse">
                                             <i class="la la-check-square-o"></i> Registrar
                                         </button>
+
+                                        <button th:if="${edit == 'true'}" type="submit" id="Dsubmit"
+                                        class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                        data-animation="pulse">
+                                        <i class="la la-check-square-o"></i> Actualizar
+                                    </button>
                                     </div>
 
                                     </form>

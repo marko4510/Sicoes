@@ -71,37 +71,37 @@ public class Contratacion {
     
     // Tabla Archivo Adjunto
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_archivo_adjunto")
     private ArchivoAdjunto archivoAdjunto;
     
     // Tabla Proyecto
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_proyecto")
     private Proyecto proyecto;
 
     // Tabla Modalidad
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_modalidad")
     private Modalidad modalidad;
 
     // Tabla Tipo Modalidad
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_modalidad")
     private TipoModalidad tipoModalidad;
 
     // Tabla Persona
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona")
     private Persona persona;
 
     // Tabla Grado
     @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_grado")
     private Grado grado;
 
@@ -112,7 +112,7 @@ public class Contratacion {
     private Set<Formulario> formulario;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratacion", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratacion", fetch = FetchType.LAZY)
     private List<Modificatorio> modificatorio;
 
 }

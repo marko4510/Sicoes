@@ -32,11 +32,11 @@ public class ArchivoAdjunto  {
     private String ruta_archivo_adjunto;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.LAZY)
     private List<Contratacion> contratacion;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "archivoAdjunto", fetch = FetchType.LAZY)
     private List<Modificatorio> modificatorio;
 
 
