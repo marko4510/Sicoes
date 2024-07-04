@@ -770,7 +770,7 @@ select.form-control {
   .header-navbar .navbar-header {
     height: 100%;
     width: 260px;
-    height: 5.15rem;
+    height: 5rem;
     float: left;
     position: relative;
     padding: 0rem 0.85rem 0 1.2rem;
@@ -779,7 +779,7 @@ select.form-control {
       padding: 18px 0px;
       margin-right: 0; }
       .header-navbar .navbar-header .navbar-brand .brand-logo {
-        width: 36px; }
+        width: 100px; }
       .header-navbar .navbar-header .navbar-brand .brand-text {
         display: inline;
         padding-left: 6px;
@@ -790,7 +790,7 @@ select.form-control {
     height: 5rem;
     transition: 300ms ease all;
     /*Fondo de color de la barra de usuario*/
-    background: #0C289A; }
+    background: #0980d3; }
     .header-navbar .navbar-container ul.nav li > a.nav-link {
       padding: 1.8rem 1rem;
       font-size: 1.15rem; }
@@ -939,7 +939,7 @@ select.form-control {
   background: #fff; }
   .navbar-semi-dark .navbar-header {
     /*fondo color logo*/
-    background: #0C289A; }
+    background: #0980d3; }
     .navbar-semi-dark .navbar-header .brand-text {
       color: #fff; }
   .navbar-semi-dark .navbar-nav li {

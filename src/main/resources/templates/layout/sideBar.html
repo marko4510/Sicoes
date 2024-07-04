@@ -10,13 +10,14 @@
 <body>
     <div th:fragment="sideBar" class="main-menu menu-fixed menu-dark menu-accordion menu-shadow"
         data-scroll-to-active="true">
-        <div class="main-menu-content" style="background: #df1930;">
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background: #df1930;" th:if="${session.usuario.estado != 'I'}">
-                <center><img class="brand-logo"
-                    alt="no hay" src="../../../app-assets/images/logo/logoUap.png" width="170px"></center>
+        <div class="main-menu-content" style="background: #405D72;">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background: #405D72" th:if="${session.usuario.estado != 'I'}">
+                <center>
+                    <img alt="no hay" src="../../../app-assets/images/logo/logoUap.png" style="max-width: 100%; height: auto; width: 160px;">
+                </center>
                 <li class="nav-item"><a ><i
                             class="la la-user"></i><span class="menu-title" data-i18n="Dashboard">Gestionar Personas</span></a>
-                    <ul class="menu-content" style="background: #df1930;">
+                    <ul class="menu-content" style="background: #405D72;">
                         <li ><a class="menu-item" href="/PersonaR"><i></i><span>Persona</span></a>
                         </li>
                         <li th:if="${session.usuario.estado == 'S'}"><a class="menu-item" href="/UsuarioL"><i></i><span>Usuario</span></a>
@@ -30,7 +31,7 @@
 
                 <li class="nav-item"><a href="#"><i
                     class="la la-sliders"></i><span class="menu-title" data-i18n="Dashboard">Gestionar Parámetros</span></a>
-            <ul class="menu-content" style="background: #df1930;">
+            <ul class="menu-content" style="background: #405D72;">
                 <li ><a class="menu-item" href="/GradoR"><i></i><span>Grados de Instrucción</span></a>
                 </li>
                 
@@ -49,7 +50,7 @@
                 
             </ul>
         </li>      
-        <li><a class="menu-item" href="/adm/ProyectoR"><i class="la la-suitcase"></i><span>Proyectos</span></a>
+        <li><a class="menu-item"   href="/adm/ProyectoR"><i class="la la-suitcase"></i><span>Proyectos</span></a>
         </li>
         <li><a class="menu-item" href="/ContratacionInicio"><i class="la la-files-o"></i><span>Gestionar Contratación</span></a>
         </li>
