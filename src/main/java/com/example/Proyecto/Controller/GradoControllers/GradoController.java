@@ -39,7 +39,7 @@ public class GradoController {
            
            
             model.addAttribute("grados", grados);
-        
+            model.addAttribute("reg", "true");
 
             return "grado/grado-adm";
         } else {
@@ -69,7 +69,7 @@ public class GradoController {
                 Grado grado = gradoService.findOne(id_gra);
                 
                 model.addAttribute("grado", grado);
-
+                model.addAttribute("edit", "true");
                 List<Grado> grados = gradoService.findAll();
                
                 model.addAttribute("grados", grados);

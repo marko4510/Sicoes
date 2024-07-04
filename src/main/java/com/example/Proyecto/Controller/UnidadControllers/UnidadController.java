@@ -32,7 +32,7 @@ public class UnidadController {
              List<Unidad> unidades = unidadService.findAll();
             
            
-           
+             model.addAttribute("reg", "true");
             model.addAttribute("unidades", unidades);
         
 
@@ -66,7 +66,7 @@ public class UnidadController {
                 model.addAttribute("unidad", unidad);
 
                 List<Unidad> unidades = unidadService.findAll();
-               
+                model.addAttribute("edit", "true");
                 model.addAttribute("unidades", unidades);
   
                 return "unidad/unidad-adm";

@@ -34,7 +34,7 @@ public class UsuarioController {
         if (request.getSession().getAttribute("persona") != null) {
             List<Persona> personas = personaService.findAll();
             List<Usuario> usuarios = usuarioService.findAll();
-
+            model.addAttribute("reg", "true");
             model.addAttribute("personas", personas);
             model.addAttribute("usuarios", usuarios);
 
@@ -63,7 +63,7 @@ public class UsuarioController {
 
                 List<Persona> personas = personaService.findAll();
                 List<Usuario> usuarios = usuarioService.findAll();
-
+                model.addAttribute("edit", "true");
                 model.addAttribute("personas", personas);
                 model.addAttribute("usuarios", usuarios);
                 return "usuario/usuario-adm";

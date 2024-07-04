@@ -43,7 +43,7 @@ public class ProyectoControllers {
             model.addAttribute("proyectos", proyectoService.findAll());
             model.addAttribute("unidades", unidadService.findAll());
             model.addAttribute("id_encryptado", encryptedIds);
-
+            model.addAttribute("reg", "true");
             return "proyecto/gestionar-proyecto";
         } else {
             return "redirect:/";
@@ -77,6 +77,7 @@ public class ProyectoControllers {
                 model.addAttribute("proyectos", proyectos);
                 model.addAttribute("unidades", unidadService.findAll());
                 model.addAttribute("id_encryptado", encryptedIds);
+                model.addAttribute("edit", "true");
                 return "proyecto/gestionar-proyecto";
 
             } catch (Exception e) {

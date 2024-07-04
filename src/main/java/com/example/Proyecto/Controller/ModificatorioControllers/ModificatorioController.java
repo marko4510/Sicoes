@@ -86,7 +86,7 @@ public class ModificatorioController {
                         model.addAttribute("modificatorios", modificatorios);
                         model.addAttribute("modificatorio", new Modificatorio());
                         model.addAttribute("contrataciones", contratacionService.findAll());
-
+                        model.addAttribute("reg", "true");
                         return "modificatorio/gestionar-modificatorio";
 
                 } else {
@@ -316,7 +316,7 @@ public class ModificatorioController {
                         model.addAttribute("Idgrado", gradoService.findAll());
                         model.addAttribute("Idproyecto", proyectoService.findAll());
                         model.addAttribute("modificatorio", modificatorio);
-
+                        model.addAttribute("edit", "true");
                         return "modificatorio/mostrar-modificatorio";
                 } else {
                         return "redirect:/";

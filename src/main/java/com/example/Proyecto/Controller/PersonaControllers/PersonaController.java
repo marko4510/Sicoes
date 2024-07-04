@@ -30,7 +30,7 @@ public class PersonaController {
             List<Persona> personas = personaService.findAll();
 
             model.addAttribute("personas", personas);
-
+            model.addAttribute("reg", "true");
             return "persona/persona-adm";
         } else {
             return "redirect:/";
@@ -55,7 +55,7 @@ public class PersonaController {
                 model.addAttribute("persona", persona);
 
                 List<Persona> personas = personaService.findAll();
-
+                model.addAttribute("edit", "true");
                 model.addAttribute("personas", personas);
 
                 return "persona/persona-adm";

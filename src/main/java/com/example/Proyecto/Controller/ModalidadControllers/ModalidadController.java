@@ -44,7 +44,7 @@ public class ModalidadController {
              for (Modalidad modalidad : modalidades) {
                  System.out.println(modalidad.getNombre_modalidad()); // Asumiendo que tienes un método toString en Modalidad
              }
-     
+             model.addAttribute("reg", "true");
              model.addAttribute("tipoModalidades", tipoModalidades);
              model.addAttribute("modalidades", modalidades);
         
@@ -83,7 +83,7 @@ public class ModalidadController {
                 model.addAttribute("tipoModalidades", tipoModalidades);
 
                 List<Modalidad> modalidades = modalidadService.findAll();
-               
+                model.addAttribute("edit", "true");
                 model.addAttribute("modalidades", modalidades);
   
                 return "modalidad/modalidad-adm";

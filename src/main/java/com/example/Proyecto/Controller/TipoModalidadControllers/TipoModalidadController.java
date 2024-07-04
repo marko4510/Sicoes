@@ -31,7 +31,7 @@ public class TipoModalidadController {
              List<TipoModalidad> tipoModalidades = tipoModalidadService.findAll();
             
            
-           
+             model.addAttribute("reg", "true");
             model.addAttribute("tipoModalidades", tipoModalidades);
         
 
@@ -67,7 +67,7 @@ public class TipoModalidadController {
                 model.addAttribute("tipoModalidad", tipoModalidad);
 
                 List<TipoModalidad> tipoModalidades= tipoModalidadService.findAll();
-               
+                model.addAttribute("edit", "true");
                 model.addAttribute("tipoModalidades", tipoModalidades);
   
                 return "tipomodalidad/tipomodalidad-adm";

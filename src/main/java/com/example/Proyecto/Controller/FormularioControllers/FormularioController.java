@@ -32,7 +32,7 @@ public class FormularioController {
         if (request.getSession().getAttribute("persona") != null) {
             List<Formulario> formularios = formularioService.findAll();
            
-           
+            model.addAttribute("reg", "true");
             model.addAttribute("formularios", formularios);
         
 
@@ -61,7 +61,7 @@ public class FormularioController {
                 model.addAttribute("formulario", formulario);
 
                 List<Formulario> formularios = formularioService.findAll();
-               
+                model.addAttribute("edit", "true");
                 model.addAttribute("formularios", formularios);
   
                 return "formulario/formulario-adm";

@@ -57,7 +57,7 @@
                                                 <div class="form-group">
                                                     <h5>Nombre de Modalidad</h5>
                                                     <input th:field="${modalidad.nombre_modalidad}" type="text"
-                                                    name="text" class="form-control mb-1 square">
+                                                    name="text" class="form-control mb-1 square" required>
                                                 </div>
                                             </div>
                                             
@@ -68,6 +68,7 @@
                                                     data-validation-required-message="Debe Seleccionar una opción"
                                                         id="select2-tags" th:field="${modalidad.tipoModalidad}"
                                                         name="id_tipo_modalidad">
+                                                        <option value="">Seleccionar...</option>
                                                         <option th:each="tpm : ${tipoModalidades}"
                                                             th:value="${tpm.id_tipo_modalidad}"
                                                             th:if="${tpm.estado_tipo_modalidad != 'X'}"
@@ -85,12 +86,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-actions">
-                                        <button style="width:100%;" type="submit"
+                                    <div class="form-actions" style="text-align: center;">
+                                        <button th:if="${reg == 'true'}" type="submit" id="Dsubmit"
                                             class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
                                             data-animation="pulse">
                                             <i class="la la-check-square-o"></i> Registrar
                                         </button>
+
+                                        <button th:if="${edit == 'true'}" type="submit" id="Dsubmit"
+                                        class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                        data-animation="pulse">
+                                        <i class="la la-check-square-o"></i> Actualizar
+                                    </button>
                                     </div>
                                     </form>
                                 </div>

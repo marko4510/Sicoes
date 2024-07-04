@@ -25,6 +25,15 @@
                     <td th:text="${tpm.nombre_tipo_modalidad}"></td>
                     <td>
                         <center>
+                            <a class="btn btn-warning round text-white" th:href="${'/editar-tpmodalidad/'+tpm.id_tipo_modalidad}">
+                                <i class="la la-cog"></i>
+                            </a>
+                            <a th:id="${tpm.id_tipo_modalidad}" class="btn btn-danger round text-white"
+                                onclick="MandarURL(this.id)">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </center>
+                        <!-- <center>
                             <div class="btn-group mr-1 mb-1">
                                 <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="la la-cog"></i></button>
                                 <div class="dropdown-menu">
@@ -33,7 +42,7 @@
                             
                                 </div>
                             </div>
-                        </center>
+                        </center> -->
                     </td>
                 </tr>
             </tbody>

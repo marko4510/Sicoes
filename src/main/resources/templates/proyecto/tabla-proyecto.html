@@ -27,6 +27,15 @@
                     <td th:text="${pro.unidad.nombre_unidad}"></td>
                     <td>
                         <center>
+                            <a class="btn btn-warning round text-white" th:href="${'/adm/editar-proyecto/'+id_encryptado[__${index.index}__]}">
+                                <i class="la la-cog"></i>
+                            </a>
+                            <a th:id="${id_encryptado[__${index.index}__]}" class="btn btn-danger round text-white"
+                                onclick="MandarURL(this.id)">
+                                <i class="la la-trash"></i>
+                            </a>
+                        </center>
+                        <!-- <center>
                             <a class="btn btn-warning round text-white"
                                 th:href="${'/adm/editar-proyecto/'+id_encryptado[__${index.index}__]}">
                                 <i class="la la-cog"></i>
@@ -35,8 +44,7 @@
                                 onclick="MandarURL(this.id)">
                                 <i class="la la-trash"></i>
                             </a>
-                            <!-- <a class="btn btn-warning round btn-min-width box-shadow-3 mr-1 mb-1" th:attr="onclick=${'MandarURL('+id_encryptado[__${index.index}__]+')'}" th:href="${'/adm/editar-persona/'+id_encryptado[__${index.index}__]}"><i class="la la-trash"></i></a> -->
-                        </center>
+                        </center> -->
                     </td>
                 </tr>
             </tbody>
