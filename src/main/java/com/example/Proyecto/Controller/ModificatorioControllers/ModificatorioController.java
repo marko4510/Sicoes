@@ -227,7 +227,7 @@ public class ModificatorioController {
                 List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
                 AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
 
-                if (multipartFile != null && !multipartFile.isEmpty()) {
+               
                         try {
                                 Path rootPath = Paths.get("archivos/");
                                 Path rootAbsolutePath = rootPath.toAbsolutePath();
@@ -263,9 +263,7 @@ public class ModificatorioController {
                         } catch (IOException e) {
                                 System.err.println("Error al crear el directorio: " + e.getMessage());
                         }
-                } else {
-                        System.out.println("no llegue a registrarme pipipipipi");
-                }
+               
 
                 return "redirect:/ModificatorioL";
         }

@@ -153,7 +153,7 @@ public class ContratacionController {
         List<ArchivoAdjunto> listArchivos = archivoAdjuntoService.listarArchivoAdjunto();
         AdjuntarArchivo adjuntarArchivo = new AdjuntarArchivo();
 
-        if (multipartFile != null && !multipartFile.isEmpty()) {
+        
             try {
                 Path rootPath = Paths.get("archivos/");
                 Path rootAbsolutePath = rootPath.toAbsolutePath();
@@ -184,9 +184,7 @@ public class ContratacionController {
             } catch (IOException e) {
                 System.err.println("Error al crear el directorio: " + e.getMessage());
             }
-        } else {
-            // Handle the case where no file is uploaded
-        }
+       
 
         return "redirect:/ContratacionL";
     }
