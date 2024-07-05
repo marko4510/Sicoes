@@ -47,7 +47,7 @@
                                             enctype="multipart/form-data">
                                     </th:block>
                                     <th:block th:if="${usuario.id_usuario == null}">
-                                        <form id="form1" class="form" action="/UsuarioF" method="post" novalidate
+                                        <form id="form" class="form" action="/UsuarioF" method="post" novalidate
                                             enctype="multipart/form-data">
                                     </th:block>
                                     <input type="hidden" th:field="${usuario.id_usuario}">
@@ -58,7 +58,6 @@
                                                 <div class="form-group">
                                                     <h5>Persona</h5>
                                                     <select class="select2 form-control square" required
-                                                       
                                                         id="select2-tags" th:field="${usuario.persona}"
                                                         name="id_persona">
                                                         <option value="">Seleccione una persona</option>
@@ -75,7 +74,6 @@
                                                 <div class="form-group">
                                                     <h5>Rol</h5>
                                                     <select class="select2 form-control square" required
-                                                        
                                                         id="select2-tags6" th:field="${usuario.estado}" name="estadp">
                                                         <option value="">Seleccione un Rol</option>
                                                         <option value="A">Administrativo</option>
@@ -83,7 +81,7 @@
                                                         <option value="I">Invitado</option>
 
                                                     </select>
-                                                  
+
                                                 </div>
                                             </div>
 
@@ -92,7 +90,7 @@
                                                 <div class="form-group">
                                                     <h5>Nombre Usuario</h5>
                                                     <input th:field="${usuario.usuario_nom}" type="text" name="text"
-                                                        class="form-control mb-1 square" required >
+                                                        class="form-control mb-1 square" required>
                                                 </div>
                                             </div>
 
@@ -100,7 +98,7 @@
                                                 <div class="form-group">
                                                     <h5>Contraseña</h5>
                                                     <input th:field="${usuario.contrasena}" type="text" name="text"
-                                                        class="form-control mb-1 square" required >
+                                                        class="form-control mb-1 square" required>
 
                                                 </div>
                                             </div>
@@ -117,10 +115,10 @@
                                         </button>
 
                                         <button th:if="${edit == 'true'}" type="submit" id="Dsubmit"
-                                        class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
-                                        data-animation="pulse">
-                                        <i class="la la-check-square-o"></i> Actualizar
-                                    </button>
+                                            class="btn btn-info buttonAnimation box-shadow-3 mr-1 mb-1"
+                                            data-animation="pulse">
+                                            <i class="la la-check-square-o"></i> Actualizar
+                                        </button>
                                     </div>
                                     </form>
                                 </div>
@@ -194,93 +192,70 @@
         }
     </script>
 
- 
+
     <div th:replace="layout/script :: script"></div>
     <script>
         $(document).ready(function () {
-    $('#form1').submit(function (event) {
-        event.preventDefault(); // Evita el envío del formulario por defecto
+            $('#form1').submit(function (event) {
+                event.preventDefault(); // Evita el envío del formulario por defecto
 
-        var form = $(this);
-        var submitBtn = form.find('button[type="submit"]');
-        var isValid = true;
+                var form = $(this);
+                var submitBtn = form.find('button[type="submit"]'); // Encuentra el botón de envío del formulario
+                submitBtn.prop('disabled', true); // Desactiva el botón
 
-        // Validar campos
-        form.find('select, input').each(function() {
-            var field = $(this);
-            if (field.val() === '') {
-                isValid = false;
-                field.addClass('is-invalid');
-                var feedbackDiv = field.next('.invalid-feedback');
-                if (feedbackDiv.length === 0) {
-                    field.after('<div class="invalid-feedback">Este campo es requerido</div>');
-                }
-            } else {
-                field.removeClass('is-invalid');
-                field.next('.invalid-feedback').remove();
-            }
-        });
+                var url = form.attr('action');
+                var formData = form.serialize(); // Serializa los datos del formulario
 
-        if (!isValid) {
-            return; // Detener el envío si hay campos inválidos
-        }
-
-        submitBtn.prop('disabled', true); // Desactiva el botón
-
-        var url = form.attr('action');
-        var formData = form.serialize();
-
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: formData,
-            success: function (data) {
-                console.log(data);
-                if (data != 0) {
-                    Swal.fire({
-                        title: "Información Registrada",
-                        text: "Registro Guardado Exitosamente",
-                        icon: "success",
-                        confirmButtonClass: 'btn btn-success',
-                        buttonsStyling: false,
-                    });
-                } else {
-                    if (data == 0) {
-                        Swal.fire({
-                            title: "Información ya Registrada",
-                            text: "Ya se Encuentra un Registro con el mismo NOMBRE",
-                            icon: "error",
-                            confirmButtonClass: 'btn btn-warning',
-                            buttonsStyling: false,
-                        });
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        if (data != 0) {
+                            Swal.fire({
+                                title: "Información Registrada",
+                                text: "Registro Guardado Exitosamente",
+                                type: "success",
+                                confirmButtonClass: 'btn btn-success',
+                                buttonsStyling: false,
+                            });
+                        } else {
+                            if (data == 0) {
+                                Swal.fire({
+                                    title: "Información ya Registrada",
+                                    text: "Ya se Encuentra un Registro con el mismo NOMBRE",
+                                    type: "error",
+                                    confirmButtonClass: 'btn btn-warning',
+                                    buttonsStyling: false,
+                                });
+                            }
+                        }
+                        submitBtn.prop('disabled', false); // Reactiva el botón después de recibir la respuesta
+                        form[0].reset(); // Limpia los datos del formulario                        
+                        loadFragment();
+                    },
+                    error: function () {
+                        submitBtn.prop('disabled', false); // Reactiva el botón en caso de error
                     }
+                });
+                function loadFragment() {
+                    $.ajax({
+                        url: '/tableUsuarios',
+                        method: 'GET',
+                        success: function (data) {
+                            $('#fragmentContainer').html(data);
+                            $('.zero-configuration').DataTable();
+                        },
+                        error: function (error) {
+                            console.log('Failed to load fragment:', error);
+                        }
+                    });
                 }
-                submitBtn.prop('disabled', false);
-                form[0].reset();
-                form.find('.is-invalid').removeClass('is-invalid');
-                form.find('.invalid-feedback').remove();
-                loadFragment();
-            },
-            error: function () {
-                submitBtn.prop('disabled', false);
-            }
-        });
-    });
+            });
 
-    function loadFragment() {
-        $.ajax({
-            url: '/tableUsuarios',
-            method: 'GET',
-            success: function (data) {
-                $('#fragmentContainer').html(data);
-                $('.zero-configuration').DataTable();
-            },
-            error: function (error) {
-                console.log('Failed to load fragment:', error);
-            }
+
         });
-    }
-});
 
     </script>
 

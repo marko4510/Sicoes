@@ -88,7 +88,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/eliminar-usuario/{id_usuario}")
-    public String eliminar_usuario(HttpServletRequest request, @PathVariable("id_usaurio") String id_usuario)
+    public String eliminar_usuario(HttpServletRequest request, @PathVariable("id_usuario") String id_usuario)
             throws Exception {
         if (request.getSession().getAttribute("persona") != null) {
             try {
