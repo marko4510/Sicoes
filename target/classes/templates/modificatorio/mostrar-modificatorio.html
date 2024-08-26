@@ -68,10 +68,9 @@
                                                     <label class="col-md-4 label-control" for="userinput6">Codigo
                                                         Contratación</label>
                                                     <div class="col-md-6">
-                                                        <input th:field="${modificatorio.codigo_modificatorio}"
+                                                        <input th:value="${modificatorio.contratacion.codigo_contratacion}"
                                                             type="text" name="text" class="form-control mb-1 square"
-                                                            data-validation-required-message="Deber Ingresar los Datos"
-                                                            required>
+                                                           readonly>
                                                     </div>
                                                 </div>
                                             </div>

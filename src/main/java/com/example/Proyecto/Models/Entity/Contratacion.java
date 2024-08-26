@@ -50,6 +50,7 @@ public class Contratacion {
     private String boleta_seguridad_contratacion;
     private String boleta_cumplimiento_contratacion;
     private String observacion_contratacion;
+    private String nro_contrato;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_adjudicado_contratacion;

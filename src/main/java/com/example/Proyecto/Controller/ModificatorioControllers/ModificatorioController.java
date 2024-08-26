@@ -253,6 +253,7 @@ public class ModificatorioController {
                                 modificatorio.setCodigo_modificatorio(
                                                 modificatorio.getModalidad().getNombre_modalidad() + "-"
                                                                 + modificatorio.getGestion_modificatorio());
+                               
                                 modificatorio.setArchivoAdjunto(archivoAdjunto2);
                                 modificatorio.setNombreArchivo(nombreArchivo);
                                 modificatorio.setEstado_modificatorio("A");

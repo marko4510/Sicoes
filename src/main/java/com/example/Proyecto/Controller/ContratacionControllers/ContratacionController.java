@@ -178,6 +178,7 @@ public class ContratacionController {
                 contratacion.setArchivoAdjunto(archivoAdjunto2);
                 contratacion.setNombreArchivo(nombreArchivo);
                 contratacion.setEstado_contratacion("A");
+                contratacion.setNro_contrato(numeroC);
                 contratacionService.save(contratacion);
                 Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
 
@@ -255,6 +256,7 @@ public class ContratacionController {
         if (numeroC != null) {
         contratacion.setCodigo_contratacion(contratacion.getModalidad().getNombre_modalidad() + "-" + contratacion.getGestion_contratacion()+"/"+numeroC);      
         }
+        contratacion.setNro_contrato(numeroC);
         contratacion.setCodigo_contratacion(contratacion.getCodigo_contratacion());
         contratacion.setEstado_contratacion("A");
         contratacionService.save(contratacion);

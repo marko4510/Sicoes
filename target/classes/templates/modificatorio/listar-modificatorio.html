@@ -49,6 +49,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Codigo</th>
+                                                    <th>Nro Modificación</th>
                                                     <th>Cargo Servicio</th>
                                                     <th>Adjudicado</th>
                                                     <th>Grado de Ins.</th>
@@ -67,7 +68,8 @@
                                             <tbody>
                                                 <tr th:each="modi, index : ${modificatorios}" th:if="${modi.estado_modificatorio != 'X'}">
                                 
-                                                    <td th:text="${modi.codigo_modificatorio}"></td>
+                                                    <td th:text="${modi.contratacion.codigo_contratacion}"></td>
+                                                    <td th:text="${modi.nro_modificacion_contratacion}"></td>
                                                     <td th:text="${modi.cargo_servicio_modificatorio}"></td>
                                                     <td
                                                         th:text="${modi.persona.nombre_persona}">

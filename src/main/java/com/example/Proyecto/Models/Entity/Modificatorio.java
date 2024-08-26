@@ -37,6 +37,7 @@ public class Modificatorio {
     private String nro_modificacion_contratacion;
     private String partida_modificatorio;
     private String estado_modificatorio;
+    private String nro_contrato;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_adjudicado_modificatorio;
