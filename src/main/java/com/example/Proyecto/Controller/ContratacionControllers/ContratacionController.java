@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -179,6 +180,7 @@ public class ContratacionController {
                 contratacion.setNombreArchivo(nombreArchivo);
                 contratacion.setEstado_contratacion("A");
                 contratacion.setNro_contrato(numeroC);
+                contratacion.setFechaCreacion(new Date());
                 contratacionService.save(contratacion);
                 Integer ad = adjuntarArchivo.adjuntarArchivoContratacion(contratacion, rutaDirectorio);
 

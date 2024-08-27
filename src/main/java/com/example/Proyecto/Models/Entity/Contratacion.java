@@ -61,6 +61,8 @@ public class Contratacion {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_fin_contratacion;
 
+    private Date fechaCreacion;
+
 
     private String estado_contratacion;
 

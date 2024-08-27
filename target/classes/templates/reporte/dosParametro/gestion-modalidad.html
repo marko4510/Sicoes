@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Contrataciones por Gestión</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script th:inline="javascript">
+    $(document).ready(function () {
+
+      //Intentar imprimir automáticamente después de un pequeño retraso
+      setTimeout(function() {
+      window.print();
+      }, 500); // 500ms de retraso para dar tiempo a que se cargue la página
+    });
+
+
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div>
+    <table class="table table-bordered border-dark table-sm">
+      <tbody>
+        <tr>
+          <th class="text-center" width="20%" style="vertical-align: middle;" rowspan="3">
+            <img src="../../../app-assets/images/logo/logoUap.png" width="80px" height="80px">
+          </th>
+          <th class="text-center" style="vertical-align: middle;" width="60%" rowspan="3">
+            <h6 style="padding-top: 5px; font-size: 14px; font-weight: bold;">UNIVERSIDAD AMAZÓNICA DE PANDO</h6>
+            <h6 style="padding-top: 5px; font-size: 14px; font-weight: bold;">REPORTE DE CONTRATACIONES POR GESTIÓN
+            </h6>
+          </th>
+          <th class="text-center" style="font-size: 10px; vertical-align: middle;" width="20%">REP: 000-C</th>
+        </tr>
+        <tr>
+          <th class="text-center" style="font-size: 10px; vertical-align: middle;" width="20%">Versión: 1</th>
+        </tr>
+        <tr>
+          <th class="text-center" style="font-size: 10px; vertical-align: middle;" width="20%">Valido 00-00-00
+          </th>
+        </tr>
+        <tr>
+          <th class="text-end" style="font-size: 12px;">Gestión : </th>
+          <td style="font-size: 12px;" colspan="2" th:text="${gestion}"></td>
+        </tr>
+        <tr>
+          <th class="text-end" style="font-size: 12px;">Modalidad : </th>
+          <td style="font-size: 12px;" colspan="2" th:text="${nombre_modalidad}"></td>
+        </tr>
+        <tr>
+          <th class="text-end" style="font-size: 12px;">Fecha Generación : </th>
+          <td style="font-size: 12px;" colspan="2" th:text="${fechaActual}"></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+
+
+
+    <table style=" width: 100%;
+        border-collapse: collapse; ">
+      <thead>
+        <tr>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Nro</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Código</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Cargo del Serv.</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Fecha Inicio</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Fecha Fin</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Monto Mensual</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Días</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Monto Total</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Tipo Contrato</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Proyecto</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Nro Proyecto</th>
+          <th style="padding: 8px;text-align: center; border: 1px solid black; font-size: 12px;">Partida</th>
+
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="con : ${contrataciones}">
+
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.nro_contrato} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.codigo_contratacion} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.cargo_servicio_contratacion} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${#dates.format(con.fecha_inicio_contratacion, 'dd/MM/yyyy')}">
+          </td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${#dates.format(con.fecha_fin_contratacion, 'dd/MM/yyyy')}">
+          </td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.monto_mensual_contratacion} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.dias_calendario_contratacion} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.monto_anual_contratacion} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.tipoModalidad.nombre_tipo_modalidad} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.proyecto.nombre_proyecto} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.proyecto.numero_proyecto} "></td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;"
+            th:text="${con.partida_contratacion} "></td>
+
+
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td style="padding: 8px;text-align: left; border: 1px solid black;" colspan="3"></td>
+          <td
+            style="padding: 8px;text-align: left; border: 1px solid black; text-align: center; font-size: 12px; font-weight: bold;"
+            colspan="4">SUMATORIA TOTAL</td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black; font-size: 12px;" colspan="2">
+            <b>
+              <span
+                th:text="${#numbers.formatDecimal(#aggregates.sum(contrataciones.![monto_anual_contratacion]), 1, 'COMMA', 2, 'POINT')}"></span>
+              <span> Bs.</span>
+            </b>
+          </td>
+          <td style="padding: 8px;text-align: left; border: 1px solid black;" colspan="3"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</body>
+
+</html>
